@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camal Data</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f5f6;
+  color:#17221d;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+/* LOGIN */
+.auth{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#063b2a,#087f55);
+}
+
+.auth-box{
+  width:100%;
+  max-width:400px;
+  background:white;
+  padding:30px 24px;
+  border-radius:24px;
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo-circle{
+  width:65px;
+  height:65px;
+  margin:auto;
+  border-radius:20px;
+  background:#087f55;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.logo h1{
+  margin-top:10px;
+  color:#087f55;
+}
+
+.logo p{
+  color:#777;
+  font-size:13px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.form-group input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  outline:none;
+}
+
+.form-group input:focus{
+  border-color:#087f55;
+}
+
+.main-btn{
+  width:100%;
+  padding:14px;
+  background:#087f55;
+  color:white;
+  border-radius:12px;
+  font-weight:bold;
+}
+
+.switch{
+  text-align:center;
+  margin-top:18px;
+  font-size:14px;
+}
+
+.switch span{
+  color:#087f55;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* APP */
+#app{
+  display:none;
+  min-height:100vh;
+  padding-bottom:80px;
+}
+
+.topbar{
+  background:#087f55;
+  color:white;
+  padding:18px 18px 25px;
+  border-radius:0 0 25px 25px;
+}
+
+.topbar-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  color:white;
+}
+
+.welcome{
+  margin-top:20px;
+}
+
+.welcome small{
+  opacity:.8;
+}
+
+.welcome h2{
+  margin-top:4px;
+}
+
+.container{
+  padding:18px;
+  max-width:700px;
+  margin:auto;
+}
+
+/* WALLET */
+.wallet{
+  margin-top:-5px;
+  background:linear-gradient(135deg,#063b2a,#0b9868);
+  color:white;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.wallet small{
+  opacity:.8;
+}
+
+.balance{
+  font-size:30px;
+  font-weight:bold;
+  margin:8px 0 18px;
+}
+
+.wallet-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.wallet-buttons button{
+  flex:1;
+  padding:11px;
+  border-radius:10px;
+  background:white;
+  color:#087f55;
+  font-weight:bold;
+}
+
+/* SECTION */
+.section{
+  margin-top:25px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:13px;
+}
+
+.section-title h3{
+  font-size:18px;
+}
+
+.section-title span{
+  color:#087f55;
+  font-size:13px;
+}
+
+/* SERVICES */
+.services{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.service{
+  background:white;
+  padding:15px 5px;
+  text-align:center;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.service-icon{
+  width:42px;
+  height:42px;
+  margin:auto;
+  border-radius:12px;
+  background:#e7f7f1;
+  color:#087f55;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.service p{
+  margin-top:8px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+/* NETWORK */
+.networks{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.network{
+  background:white;
+  padding:15px 5px;
+  border-radius:15px;
+  text-align:center;
+  border:2px solid transparent;
+}
+
+.network.active{
+  border-color:#087f55;
+}
+
+.network-logo{
+  width:45px;
+  height:45px;
+  margin:auto;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:bold;
+}
+
+.mtn{background:#ffc400;color:#111}
+.airtel{background:#e60000}
+.glo{background:#35a936}
+.nine{background:#111}
+
+.network p{
+  margin-top:7px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* PACKAGES */
+.packages{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.package{
+  background:white;
+  padding:16px;
+  border-radius:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.package strong{
+  font-size:18px;
+}
+
+.package p{
+  color:#777;
+  font-size:12px;
+  margin:6px 0;
+}
+
+.price{
+  color:#087f55;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.buy-btn{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  background:#087f55;
+  color:white;
+}
+
+/* LIST */
+.list{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.list-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+  border-bottom:1px solid #eee;
+}
+
+.list-item:last-child{
+  border-bottom:0;
+}
+
+.list-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#e7f7f1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.list-info{
+  flex:1;
+}
+
+.list-info strong{
+  font-size:14px;
+}
+
+.list-info small{
+  display:block;
+  color:#888;
+  margin-top:4px;
+}
+
+.amount{
+  font-weight:bold;
+  color:#e63946;
+}
+
+/* PAGES */
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* PROFILE */
+.profile-card{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.avatar{
+  width:75px;
+  height:75px;
+  margin:auto;
+  border-radius:50%;
+  background:#087f55;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:bold;
+}
+
+.profile-card h2{
+  margin-top:12px;
+}
+
+.profile-card p{
+  color:#888;
+  margin-top:5px;
+}
+
+.settings{
+  margin-top:20px;
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.setting{
+  padding:17px;
+  border-bottom:1px solid #eee;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:0 -5px 20px rgba(0,0,0,.08);
+  z-index:20;
+}
+
+.nav-btn{
+  background:none;
+  color:#777;
+  font-size:11px;
+  text-align:center;
+}
+.nav-btn div{
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:#087f55;
+  font-weight:bold;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:50;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:600px;
+  background:white;
+  border-radius:25px 25px 0 0;
+  padding:25px;
+}
+
+.modal-box h2{
+  margin-bottom:20px;
+}
+
+.modal-box input,
+.modal-box select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+}
+
+.modal-actions button{
+  flex:1;
+  padding:13px;
+  border-radius:12px;
+}
+
+.cancel{
+  background:#eee;
+}
+
+.confirm{
+  background:#087f55;
+  color:white;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(-100px);
+  background:#222;
+  color:white;
+  padding:13px 20px;
+  border-radius:12px;
+  z-index:100;
+  transition:.3s;
+  font-size:13px;
+}
+
+.toast.show{
+  transform:translateX(-50%) translateY(0);
+}
+
+/* DESKTOP */
+@media(min-width:700px){
+  .services{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .packages{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="auth" id="auth">
+
+  <div class="auth-box">
+
+    <div class="logo">
+      <div class="logo-circle">CD</div>
+      <h1>Camal Data</h1>
+      <p>Fast • Secure • Reliable</p>
+    </div>
+
+    <div id="loginForm">
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="loginPhone" type="tel" placeholder="08012345678">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input id="loginPassword" type="password" placeholder="Password">
+      </div>
+
+      <button class="main-btn" onclick="login()">Login</button>
+
+      <div class="switch">
+        Don't have an account?
+        <span onclick="showRegister()">Register</span>
+      </div>
+
+    </div>
+
+    <div id="registerForm" style="display:none">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input id="regName" type="text" placeholder="Your name">
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="regPhone" type="tel" placeholder="08012345678">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input id="regPassword" type="password" placeholder="Create password">
+      </div>
+
+      <button class="main-btn" onclick="register()">Create Account</button>
+
+      <div class="switch">
+        Already have an account?
+        <span onclick="showLogin()">Login</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- APP -->
+<div id="app">
+
+  <div class="topbar">
+
+    <div class="topbar-row">
+      <div class="brand">Camal Data</div>
+      <button class="icon-btn" onclick="showPage('notifications')">🔔</button>
+    </div>
+
+    <div class="welcome">
+      <small>Welcome back</small>
+      <h2 id="userName">User 👋</h2>
+    </div>
+
+  </div>
+
+
+  <div class="container">
+
+    <!-- HOME -->
+    <div class="page active" id="home">
+
+      <div class="wallet">
+
+        <small>Wallet Balance</small>
+
+        <div class="balance" id="balance">
+          ₦5,000.00
+        </div>
+
+        <div class="wallet-buttons">
+          <button onclick="fundWallet()">＋ Fund Wallet</button>
+          <button onclick="showPage('transactions')">History</button>
+        </div>
+
+      </div>
+
+
+      <div class="section">
+
+        <div class="section-title">
+          <h3>Quick Services</h3>
+        </div>
+
+        <div class="services">
+
+          <div class="service" onclick="showPage('data')">
+            <div class="service-icon">📱</div>
+            <p>Data</p>
+          </div>
+
+          <div class="service" onclick="showPage('airtime')">
+            <div class="service-icon">☎️</div>
+            <p>Airtime</p>
+          </div>
+
+          <div class="service" onclick="showPage('recharge')">
+            <div class="service-icon">🎫</div>
+            <p>Recharge</p>
+          </div>
+
+          <div class="service" onclick="showPage('transactions')">
+            <div class="service-icon">📊</div>
+            <p>History</p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="section">
+
+        <div class="section-title">
+          <h3>Networks</h3>
+        </div>
+
+        <div class="networks">
+
+          <div class="network active">
+            <div class="network-logo mtn">MTN</div>
+            <p>MTN</p>
+          </div>
+
+          <div class="network">
+            <div class="network-logo airtel">A</div>
+            <p>Airtel</p>
+          </div>
+
+          <div class="network">
+            <div class="network-logo glo">Glo</div>
+            <p>Glo</p>
+          </div>
+
+          <div class="network">
+            <div class="network-logo nine">9</div>
+            <p>9mobile</p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="section">
+
+        <div class="section-title">
+          <h3>Recent Transactions</h3>
+          <span onclick="showPage('transactions')">View all</span>
+        </div>
+
+        <div class="list" id="recentTransactions">
+          <div class="list-item">
+            <div class="list-icon">💰</div>
+            <div class="list-info">
+              <strong>Wallet</strong>
+              <small>No transactions yet</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- DATA -->
+    <div class="page" id="data">
+
+      <div class="section-title">
+        <h3>Buy Data</h3>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="dataPhone" type="tel" placeholder="08012345678">
+      </div>
+
+      <div class="networks">
+
+        <div class="network active">
+          <div class="network-logo mtn">MTN</div>
+          <p>MTN</p>
+        </div>
+
+        <div class="network">
+          <div class="network-logo airtel">A</div>
+          <p>Airtel</p>
+        </div>
+
+        <div class="network">
+          <div class="network-logo glo">Glo</div>
+          <p>Glo</p>
+        </div>
+
+        <div class="network">
+          <div class="network-logo nine">9</div>
+          <p>9mobile</p>
+        </div>
+
+      </div>
+
+      <div class="section">
+
+        <div class="packages">
+
+          <div class="package">
+            <strong>500MB</strong>
+            <p>30 Days</p>
+            <div class="price">₦150</div>
+            <button class="buy-btn" onclick="buy('500MB Data',150)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>1GB</strong>
+            <p>30 Days</p>
+            <div class="price">₦300</div>
+            <button class="buy-btn" onclick="buy('1GB Data',300)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>2GB</strong>
+            <p>30 Days</p>
+            <div class="price">₦600</div>
+            <button class="buy-btn" onclick="buy('2GB Data',600)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>3GB</strong>
+            <p>30 Days</p>
+            <div class="price">₦900</div>
+            <button class="buy-btn" onclick="buy('3GB Data',900)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>5GB</strong>
+            <p>30 Days</p>
+            <div class="price">₦1,500</div>
+            <button class="buy-btn" onclick="buy('5GB Data',1500)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>10GB</strong>
+            <p>30 Days</p>
+            <div class="price">₦3,000</div>
+            <button class="buy-btn" onclick="buy('10GB Data',3000)">Buy</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- AIRTIME -->
+    <div class="page" id="airtime">
+
+      <div class="section-title">
+        <h3>Buy Airtime</h3>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="airtimePhone" type="tel" placeholder="08012345678">
+      </div>
+
+      <div class="section">
+
+        <div class="packages">
+
+          <div class="package">
+            <strong>₦50</strong>
+            <p>Airtime</p>
+            <button class="buy-btn" onclick="buy('₦50 Airtime',50)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦100</strong>
+            <p>Airtime</p>
+            <button class="buy-btn" onclick="buy('₦100 Airtime',100)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦200</strong>
+            <p>Airtime</p>
+            <button class="buy-btn" onclick="buy('₦200 Airtime',200)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦500</strong>
+            <p>Airtime</p>
+            <button class="buy-btn" onclick="buy('₦500 Airtime',500)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦1,000</strong>
+            <p>Airtime</p>
+            <button class="buy-btn" onclick="buy('₦1,000 Airtime',1000)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦2,000</strong>
+            <p>Airtime</p>
+            <button class="buy-btn" onclick="buy('₦2,000 Airtime',2000)">Buy</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- RECHARGE -->
+    <div class="page" id="recharge">
+
+      <div class="section-title">
+        <h3>Recharge Card</h3>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="rechargePhone" type="tel" placeholder="08012345678">
+      </div>
+
+      <div class="section">
+
+        <div class="packages">
+
+          <div class="package">
+            <strong>₦100</strong>
+            <p>Recharge Card</p>
+            <button class="buy-btn" onclick="buy('₦100 Recharge Card',100)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦200</strong>
+            <p>Recharge Card</p>
+            <button class="buy-btn" onclick="buy('₦200 Recharge Card',200)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦500</strong>
+            <p>Recharge Card</p>
+            <button class="buy-btn" onclick="buy('₦500 Recharge Card',500)">Buy</button>
+          </div>
+
+          <div class="package">
+            <strong>₦1,000</strong>
+            <p>Recharge Card</p>
+            <button class="buy-btn" onclick="buy('₦1,000 Recharge Card',1000)">Buy</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TRANSACTIONS -->
+    <div class="page" id="transactions">
+
+      <div class="section-title">
+        <h3>Transactions</h3>
+      </div>
+
+      <div class="list" id="transactionsList">
+
+        <div class="list-item">
+          <div class="list-icon">📊</div>
+          <div class="list-info">
+            <strong>No transactions</strong>
+            <small>Your transactions will appear here</small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- NOTIFICATIONS -->
+    <div class="page" id="notifications">
+
+      <div class="section-title">
+        <h3>Notifications</h3>
+      </div>
+
+      <div class="list">
+
+        <div class="list-item">
+          <div class="list-icon">🎉</div>
+          <div class="list-info">
+            <strong>Welcome to Camal Data</strong>
+            <small>Your account is ready.</small>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-icon">🔒</div>
+          <div class="list-info">
+            <strong>Account Security</strong>
+            <small>Keep your password private.</small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PROFILE -->
+    <div class="page" id="profile">
+
+      <div class="profile-card">
+
+        <div class="avatar" id="avatar">C</div>
+
+        <h2 id="profileName">User</h2>
+
+        <p id="profilePhone">08000000000</p>
+
+      </div>
+
+      <div class="settings">
+
+        <div class="setting">
+          <span>👤 Account</span>
+          <span>›</span>
+        </div>
+
+        <div class="setting">
+          <span>🔐 Security</span>
+          <span>›</span>
+        </div>
+
+        <div class="setting">
+          <span>⚙️ Settings</span>
+          <span>›</span>
+        </div>
+
+        <div class="setting" onclick="logout()">
+          <span style="color:red">🚪 Logout</span>
+          <span>›</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+
+    <button class="nav-btn active" onclick="showPage('home',this)">
+      <div>🏠</div>
+      Home
+    </button>
+
+    <button class="nav-btn" onclick="showPage('data',this)">
+      <div>📱</div>
+      Data
+    </button>
+
+    <button class="nav-btn" onclick="showPage('airtime',this)">
+      <div>☎️</div>
+      Airtime
+    </button>
+
+    <button class="nav-btn" onclick="showPage('transactions',this)">
+      <div>📊</div>
+      History
+    </button>
+
+    <button class="nav-btn" onclick="showPage('profile',this)">
+      <div>👤</div>
+      Profile
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <h2 id="modalTitle">Confirm Purchase</h2>
+
+    <p id="modalText" style="margin-bottom:18px;color:#666"></p>
+
+    <div class="modal-actions">
+
+      <button class="cancel" onclick="closeModal()">
+        Cancel
+      </button>
+
+      <button class="confirm" onclick="confirmPurchase()">
+        Confirm
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+let balance = Number(localStorage.getItem("camalBalance")) || 5000;
+
+let transactions =
+JSON.parse(localStorage.getItem("camalTransactions")) || [];
+
+let currentPurchase = null;
+
+
+/* LOGIN */
+
+function showRegister(){
+
+  document.getElementById("loginForm").style.display="none";
+
+  document.getElementById("registerForm").style.display="block";
+
+}
+
+
+function showLogin(){
+
+  document.getElementById("loginForm").style.display="block";
+
+  document.getElementById("registerForm").style.display="none";
+
+}
+
+
+function register(){
+
+  let name=document.getElementById("regName").value.trim();
+
+  let phone=document.getElementById("regPhone").value.trim();
+
+  let password=document.getElementById("regPassword").value.trim();
+
+  if(!name || !phone || !password){
+
+    toast("Please fill all fields");
+
+    return;
+
+  }
+
+  localStorage.setItem("camalName",name);
+
+  localStorage.setItem("camalPhone",phone);
+
+  localStorage.setItem("camalPassword",password);
+
+  toast("Account created successfully");
+
+  showLogin();
+
+}
+
+
+function login(){
+
+  let phone=document.getElementById("loginPhone").value.trim();
+
+  let password=document.getElementById("loginPassword").value.trim();
+
+  let savedPhone=localStorage.getItem("camalPhone");
+
+  let savedPassword=localStorage.getItem("camalPassword");
+
+  if(!phone || !password){
+
+    toast("Enter phone and password");
+
+    return;
+
+  }
+
+  if(savedPhone && (phone!==savedPhone || password!==savedPassword)){
+    toast("Wrong phone number or password");
+
+    return;
+
+  }
+
+  if(!savedPhone){
+
+    localStorage.setItem("camalName","Camal User");
+
+    localStorage.setItem("camalPhone",phone);
+
+  }
+
+  localStorage.setItem("camalLogged","yes");
+
+  openApp();
+
+}
+
+
+function openApp(){
+
+  document.getElementById("auth").style.display="none";
+
+  document.getElementById("app").style.display="block";
+
+  let name=localStorage.getItem("camalName") || "Camal User";
+
+  let phone=localStorage.getItem("camalPhone") || "";
+
+  document.getElementById("userName").textContent=name+" 👋";
+
+  document.getElementById("profileName").textContent=name;
+
+  document.getElementById("profilePhone").textContent=phone;
+
+  document.getElementById("avatar").textContent=name.charAt(0).toUpperCase();
+
+  updateBalance();
+
+  renderTransactions();
+
+}
+
+
+function logout(){
+
+  localStorage.removeItem("camalLogged");
+
+  location.reload();
+
+}
+
+
+/* PAGE */
+
+function showPage(page,button){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  document.getElementById(page).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(button){
+
+    button.classList.add("active");
+
+  }
+
+  window.scrollTo(0,0);
+
+}
+
+
+/* BALANCE */
+
+function updateBalance(){
+
+  document.getElementById("balance").textContent =
+  "₦"+balance.toLocaleString()+".00";
+
+  localStorage.setItem("camalBalance",balance);
+
+}
+
+
+/* BUY */
+
+function buy(name,price){
+
+  if(balance < price){
+
+    toast("Insufficient wallet balance");
+
+    return;
+
+  }
+
+  currentPurchase={
+    name:name,
+    price:price
+  };
+
+  document.getElementById("modalTitle").textContent=
+  "Confirm Purchase";
+
+  document.getElementById("modalText").textContent=
+  name+" for ₦"+price.toLocaleString()+"?";
+
+  document.getElementById("modal").classList.add("show");
+
+}
+
+
+function confirmPurchase(){
+
+  if(!currentPurchase) return;
+
+  balance -= currentPurchase.price;
+
+  transactions.unshift({
+
+    name:currentPurchase.name,
+
+    amount:currentPurchase.price,
+
+    date:new Date().toLocaleString()
+
+  });
+
+  localStorage.setItem(
+    "camalTransactions",
+    JSON.stringify(transactions)
+  );
+
+  updateBalance();
+
+  renderTransactions();
+
+  closeModal();
+
+  toast("Purchase successful ✅");
+
+}
+
+
+function closeModal(){
+
+  document.getElementById("modal").classList.remove("show");
+
+  currentPurchase=null;
+
+}
+
+
+/* FUND WALLET */
+
+function fundWallet(){
+
+  let amount=prompt("Enter amount to fund wallet:");
+
+  amount=Number(amount);
+
+  if(!amount || amount<=0){
+
+    toast("Invalid amount");
+
+    return;
+
+  }
+
+  balance += amount;
+
+  transactions.unshift({
+
+    name:"Wallet Funding",
+
+    amount:amount,
+
+    date:new Date().toLocaleString()
+
+  });
+
+  localStorage.setItem(
+    "camalTransactions",
+    JSON.stringify(transactions)
+  );
+
+  updateBalance();
+
+  renderTransactions();
+
+  toast("Wallet funded successfully");
+
+}
+
+
+/* TRANSACTIONS */
+
+function renderTransactions(){
+
+  let list=document.getElementById("transactionsList");
+
+  let recent=document.getElementById("recentTransactions");
+
+  if(transactions.length===0){
+
+    list.innerHTML=`
+      <div class="list-item">
+        <div class="list-icon">📊</div>
+        <div class="list-info">
+          <strong>No transactions</strong>
+          <small>Your transactions will appear here</small>
+        </div>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  list.innerHTML="";
+
+  transactions.forEach(t=>{
+
+    list.innerHTML += `
+
+      <div class="list-item">
+
+        <div class="list-icon">💳</div>
+
+        <div class="list-info">
+
+          <strong>${t.name}</strong>
+
+          <small>${t.date}</small>
+
+        </div>
+
+        <div class="amount">
+          -₦${t.amount.toLocaleString()}
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  recent.innerHTML="";
+
+  transactions.slice(0,3).forEach(t=>{
+
+    recent.innerHTML += `
+
+      <div class="list-item">
+
+        <div class="list-icon">💳</div>
+
+        <div class="list-info">
+
+          <strong>${t.name}</strong>
+
+          <small>${t.date}</small>
+
+        </div>
+
+        <div class="amount">
+          -₦${t.amount.toLocaleString()}
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+/* TOAST */
+
+function toast(message){
+
+  let t=document.getElementById("toast");
+
+  t.textContent=message;
+
+  t.classList.add("show");
+
+  setTimeout(()=>{
+    t.classList.remove("show");
+  },2500);
+
+}
+
+
+/* START */
+
+if(localStorage.getItem("camalLogged")==="yes"){
+
+  openApp();
+
+}
+
+</script>
+
+</body>
+  </html>
