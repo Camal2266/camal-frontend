@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Camal Data</title>
 
 <style>
@@ -27,1473 +27,1504 @@ button{
   border:0;
 }
 
-/* LOGIN */
-.auth{
-  min-height:100vh;
+.hidden{
+  display:none!important;
+}
+
+.container{
+  width:100%;
+  max-width:500px;
+  margin:auto;
+  padding:18px;
+}
+
+.header{
+  background:#087f5b;
+  color:white;
+  padding:18px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:18px;
+  margin:15px 0;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+h2,h3{
+  margin-bottom:15px;
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:9px;
+  outline:none;
+}
+
+input:focus,select:focus{
+  border-color:#087f5b;
+}
+
+.btn{
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+  background:#087f5b;
+  color:white;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+.btn.secondary{
+  background:#555;
+}
+
+.btn.danger{
+  background:#c62828;
+}
+
+.btn.warning{
+  background:#e68a00;
+}
+
+.btn.small{
+  width:auto;
+  padding:8px 12px;
+  margin:3px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin:15px 0;
+}
+
+.tab{
+  flex:1;
+  padding:12px 5px;
+  border-radius:9px;
+  background:#ddd;
+}
+
+.tab.active{
+  background:#087f5b;
+  color:white;
+}
+
+.balance{
+  background:linear-gradient(135deg,#087f5b,#0ca678);
+  color:white;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:15px;
+}
+
+.balance small{
+  opacity:.9;
+}
+
+.balance strong{
+  display:block;
+  font-size:30px;
+  margin-top:8px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.option{
+  background:#f1f3f5;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.option b{
+  display:block;
+  margin-top:6px;
+}
+
+.item{
+  border-bottom:1px solid #eee;
+  padding:12px 0;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#e7f5ee;
+  color:#087f5b;
+  font-size:12px;
+}
+
+.badge.red{
+  background:#ffebee;
+  color:#c62828;
+}
+
+.badge.orange{
+  background:#fff3e0;
+  color:#e68a00;
+}
+
+.price{
+  color:#087f5b;
+  font-weight:bold;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.logout{
+  background:#c62828;
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+.message{
+  padding:11px;
+  border-radius:9px;
+  margin:10px 0;
+  background:#e7f5ee;
+  color:#087f5b;
+}
+
+.message.error{
+  background:#ffebee;
+  color:#c62828;
+}
+
+.admin-nav{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  margin-bottom:12px;
+}
+
+.admin-nav button{
+  white-space:nowrap;
+  padding:10px;
+  border-radius:8px;
+  background:#ddd;
+}
+
+.admin-nav button.active{
+  background:#087f5b;
+  color:white;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td{
+  padding:9px 5px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:linear-gradient(135deg,#063b2a,#087f55);
-}
-
-.auth-box{
-  width:100%;
-  max-width:400px;
-  background:white;
-  padding:30px 24px;
-  border-radius:24px;
-  box-shadow:0 20px 50px rgba(0,0,0,.2);
-}
-
-.logo{
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.logo-circle{
-  width:65px;
-  height:65px;
-  margin:auto;
-  border-radius:20px;
-  background:#087f55;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  font-weight:bold;
-}
-
-.logo h1{
-  margin-top:10px;
-  color:#087f55;
-}
-
-.logo p{
-  color:#777;
-  font-size:13px;
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-  margin-bottom:7px;
-  font-size:14px;
-  font-weight:bold;
-}
-
-.form-group input{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  outline:none;
-}
-
-.form-group input:focus{
-  border-color:#087f55;
-}
-
-.main-btn{
-  width:100%;
-  padding:14px;
-  background:#087f55;
-  color:white;
-  border-radius:12px;
-  font-weight:bold;
-}
-
-.switch{
-  text-align:center;
-  margin-top:18px;
-  font-size:14px;
-}
-
-.switch span{
-  color:#087f55;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* APP */
-#app{
-  display:none;
-  min-height:100vh;
-  padding-bottom:80px;
-}
-
-.topbar{
-  background:#087f55;
-  color:white;
-  padding:18px 18px 25px;
-  border-radius:0 0 25px 25px;
-}
-
-.topbar-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.brand{
-  font-size:22px;
-  font-weight:bold;
-}
-
-.icon-btn{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background:rgba(255,255,255,.15);
-  color:white;
-}
-
-.welcome{
-  margin-top:20px;
-}
-
-.welcome small{
-  opacity:.8;
-}
-
-.welcome h2{
-  margin-top:4px;
-}
-
-.container{
-  padding:18px;
-  max-width:700px;
-  margin:auto;
-}
-
-/* WALLET */
-.wallet{
-  margin-top:-5px;
-  background:linear-gradient(135deg,#063b2a,#0b9868);
-  color:white;
-  border-radius:20px;
-  padding:22px;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.wallet small{
-  opacity:.8;
-}
-
-.balance{
-  font-size:30px;
-  font-weight:bold;
-  margin:8px 0 18px;
-}
-
-.wallet-buttons{
-  display:flex;
-  gap:10px;
-}
-
-.wallet-buttons button{
-  flex:1;
-  padding:11px;
-  border-radius:10px;
-  background:white;
-  color:#087f55;
-  font-weight:bold;
-}
-
-/* SECTION */
-.section{
-  margin-top:25px;
-}
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:13px;
-}
-
-.section-title h3{
-  font-size:18px;
-}
-
-.section-title span{
-  color:#087f55;
-  font-size:13px;
-}
-
-/* SERVICES */
-.services{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.service{
-  background:white;
-  padding:15px 5px;
-  text-align:center;
-  border-radius:15px;
-  box-shadow:0 4px 12px rgba(0,0,0,.05);
-}
-
-.service-icon{
-  width:42px;
-  height:42px;
-  margin:auto;
-  border-radius:12px;
-  background:#e7f7f1;
-  color:#087f55;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-}
-
-.service p{
-  margin-top:8px;
-  font-size:11px;
-  font-weight:bold;
-}
-
-/* NETWORK */
-.networks{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.network{
-  background:white;
-  padding:15px 5px;
-  border-radius:15px;
-  text-align:center;
-  border:2px solid transparent;
-}
-
-.network.active{
-  border-color:#087f55;
-}
-
-.network-logo{
-  width:45px;
-  height:45px;
-  margin:auto;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-weight:bold;
-}
-
-.mtn{background:#ffc400;color:#111}
-.airtel{background:#e60000}
-.glo{background:#35a936}
-.nine{background:#111}
-
-.network p{
-  margin-top:7px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-/* PACKAGES */
-.packages{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-.package{
-  background:white;
-  padding:16px;
-  border-radius:16px;
-  box-shadow:0 4px 12px rgba(0,0,0,.05);
-}
-
-.package strong{
-  font-size:18px;
-}
-
-.package p{
-  color:#777;
-  font-size:12px;
-  margin:6px 0;
-}
-
-.price{
-  color:#087f55;
-  font-size:18px;
-  font-weight:bold;
-}
-
-.buy-btn{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-  border-radius:10px;
-  background:#087f55;
-  color:white;
-}
-
-/* LIST */
-.list{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-}
-
-.list-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:15px;
-  border-bottom:1px solid #eee;
-}
-
-.list-item:last-child{
-  border-bottom:0;
-}
-
-.list-icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:#e7f7f1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.list-info{
-  flex:1;
-}
-
-.list-info strong{
-  font-size:14px;
-}
-
-.list-info small{
-  display:block;
-  color:#888;
-  margin-top:4px;
-}
-
-.amount{
-  font-weight:bold;
-  color:#e63946;
-}
-
-/* PAGES */
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-/* PROFILE */
-.profile-card{
-  background:white;
-  padding:25px;
-  border-radius:20px;
-  text-align:center;
-}
-
-.avatar{
-  width:75px;
-  height:75px;
-  margin:auto;
-  border-radius:50%;
-  background:#087f55;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  font-weight:bold;
-}
-
-.profile-card h2{
-  margin-top:12px;
-}
-
-.profile-card p{
-  color:#888;
-  margin-top:5px;
-}
-
-.settings{
-  margin-top:20px;
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-}
-
-.setting{
-  padding:17px;
-  border-bottom:1px solid #eee;
-  display:flex;
-  justify-content:space-between;
-}
-
-/* BOTTOM NAV */
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:70px;
-  background:white;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  box-shadow:0 -5px 20px rgba(0,0,0,.08);
   z-index:20;
 }
 
-.nav-btn{
-  background:none;
-  color:#777;
-  font-size:11px;
-  text-align:center;
-}
-.nav-btn div{
-  font-size:21px;
-  margin-bottom:3px;
-}
-
-.nav-btn.active{
-  color:#087f55;
-  font-weight:bold;
-}
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:50;
-  align-items:flex-end;
-  justify-content:center;
-}
-
-.modal.show{
-  display:flex;
-}
-
 .modal-box{
-  width:100%;
-  max-width:600px;
   background:white;
-  border-radius:25px 25px 0 0;
-  padding:25px;
-}
-
-.modal-box h2{
-  margin-bottom:20px;
-}
-
-.modal-box input,
-.modal-box select{
   width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  margin-bottom:12px;
+  max-width:450px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:15px;
+  padding:20px;
 }
 
-.modal-actions{
-  display:flex;
-  gap:10px;
-}
-
-.modal-actions button{
-  flex:1;
-  padding:13px;
-  border-radius:12px;
-}
-
-.cancel{
+.close{
+  float:right;
   background:#eee;
+  border-radius:50%;
+  width:32px;
+  height:32px;
 }
 
-.confirm{
-  background:#087f55;
-  color:white;
-}
-
-/* TOAST */
-.toast{
-  position:fixed;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%) translateY(-100px);
-  background:#222;
-  color:white;
-  padding:13px 20px;
-  border-radius:12px;
-  z-index:100;
-  transition:.3s;
+.footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
   font-size:13px;
-}
-
-.toast.show{
-  transform:translateX(-50%) translateY(0);
-}
-
-/* DESKTOP */
-@media(min-width:700px){
-  .services{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .packages{
-    grid-template-columns:repeat(3,1fr);
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div class="auth" id="auth">
-
-  <div class="auth-box">
-
-    <div class="logo">
-      <div class="logo-circle">CD</div>
-      <h1>Camal Data</h1>
-      <p>Fast • Secure • Reliable</p>
-    </div>
-
-    <div id="loginForm">
-
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input id="loginPhone" type="tel" placeholder="08012345678">
-      </div>
-
-      <div class="form-group">
-        <label>Password</label>
-        <input id="loginPassword" type="password" placeholder="Password">
-      </div>
-
-      <button class="main-btn" onclick="login()">Login</button>
-
-      <div class="switch">
-        Don't have an account?
-        <span onclick="showRegister()">Register</span>
-      </div>
-
-    </div>
-
-    <div id="registerForm" style="display:none">
-
-      <div class="form-group">
-        <label>Full Name</label>
-        <input id="regName" type="text" placeholder="Your name">
-      </div>
-
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input id="regPhone" type="tel" placeholder="08012345678">
-      </div>
-
-      <div class="form-group">
-        <label>Password</label>
-        <input id="regPassword" type="password" placeholder="Create password">
-      </div>
-
-      <button class="main-btn" onclick="register()">Create Account</button>
-
-      <div class="switch">
-        Already have an account?
-        <span onclick="showLogin()">Login</span>
-      </div>
-
-    </div>
-
-  </div>
+<div class="header">
+  Camal Data
 </div>
 
+<div class="container">
 
-<!-- APP -->
-<div id="app">
+<!-- AUTH -->
+<section id="authPage">
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" id="loginTab" onclick="showLogin()">Login</button>
+      <button class="tab" id="registerTab" onclick="showRegister()">Register</button>
+    </div>
+
+    <div id="authMessage"></div>
+
+    <div id="loginBox">
+      <h2>Login</h2>
+
+      <input id="loginPhone" type="tel" placeholder="Phone number">
+      <input id="loginPassword" type="password" placeholder="Password">
+
+      <button class="btn" onclick="login()">Login</button>
+    </div>
+
+    <div id="registerBox" class="hidden">
+      <h2>Create Account</h2>
+
+      <input id="regName" type="text" placeholder="Full name">
+      <input id="regPhone" type="tel" placeholder="Phone number">
+      <input id="regPassword" type="password" placeholder="Password">
+
+      <button class="btn" onclick="register()">Create Account</button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- USER APP -->
+<section id="userPage" class="hidden">
 
   <div class="topbar">
-
-    <div class="topbar-row">
-      <div class="brand">Camal Data</div>
-      <button class="icon-btn" onclick="showPage('notifications')">🔔</button>
+    <div>
+      <b id="welcomeName">Welcome</b>
+      <br>
+      <small id="userPhone"></small>
     </div>
 
-    <div class="welcome">
-      <small>Welcome back</small>
-      <h2 id="userName">User 👋</h2>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="balance">
+    <small>Wallet Balance</small>
+    <strong id="balance">₦0.00</strong>
+  </div>
+
+  <div class="grid">
+
+    <div class="option" onclick="openBuy('data')">
+      📶
+      <b>Buy Data</b>
+    </div>
+
+    <div class="option" onclick="openBuy('airtime')">
+      📞
+      <b>Airtime</b>
+    </div>
+
+    <div class="option" onclick="openBuy('recharge')">
+      ⚡
+      <b>Recharge</b>
+    </div>
+
+    <div class="option" onclick="fundWallet()">
+      💰
+      <b>Fund Wallet</b>
     </div>
 
   </div>
 
-
-  <div class="container">
-
-    <!-- HOME -->
-    <div class="page active" id="home">
-
-      <div class="wallet">
-
-        <small>Wallet Balance</small>
-
-        <div class="balance" id="balance">
-          ₦5,000.00
-        </div>
-
-        <div class="wallet-buttons">
-          <button onclick="fundWallet()">＋ Fund Wallet</button>
-          <button onclick="showPage('transactions')">History</button>
-        </div>
-
-      </div>
-
-
-      <div class="section">
-
-        <div class="section-title">
-          <h3>Quick Services</h3>
-        </div>
-
-        <div class="services">
-
-          <div class="service" onclick="showPage('data')">
-            <div class="service-icon">📱</div>
-            <p>Data</p>
-          </div>
-
-          <div class="service" onclick="showPage('airtime')">
-            <div class="service-icon">☎️</div>
-            <p>Airtime</p>
-          </div>
-
-          <div class="service" onclick="showPage('recharge')">
-            <div class="service-icon">🎫</div>
-            <p>Recharge</p>
-          </div>
-
-          <div class="service" onclick="showPage('transactions')">
-            <div class="service-icon">📊</div>
-            <p>History</p>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="section">
-
-        <div class="section-title">
-          <h3>Networks</h3>
-        </div>
-
-        <div class="networks">
-
-          <div class="network active">
-            <div class="network-logo mtn">MTN</div>
-            <p>MTN</p>
-          </div>
-
-          <div class="network">
-            <div class="network-logo airtel">A</div>
-            <p>Airtel</p>
-          </div>
-
-          <div class="network">
-            <div class="network-logo glo">Glo</div>
-            <p>Glo</p>
-          </div>
-
-          <div class="network">
-            <div class="network-logo nine">9</div>
-            <p>9mobile</p>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="section">
-
-        <div class="section-title">
-          <h3>Recent Transactions</h3>
-          <span onclick="showPage('transactions')">View all</span>
-        </div>
-
-        <div class="list" id="recentTransactions">
-          <div class="list-item">
-            <div class="list-icon">💰</div>
-            <div class="list-info">
-              <strong>Wallet</strong>
-              <small>No transactions yet</small>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- DATA -->
-    <div class="page" id="data">
-
-      <div class="section-title">
-        <h3>Buy Data</h3>
-      </div>
-
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input id="dataPhone" type="tel" placeholder="08012345678">
-      </div>
-
-      <div class="networks">
-
-        <div class="network active">
-          <div class="network-logo mtn">MTN</div>
-          <p>MTN</p>
-        </div>
-
-        <div class="network">
-          <div class="network-logo airtel">A</div>
-          <p>Airtel</p>
-        </div>
-
-        <div class="network">
-          <div class="network-logo glo">Glo</div>
-          <p>Glo</p>
-        </div>
-
-        <div class="network">
-          <div class="network-logo nine">9</div>
-          <p>9mobile</p>
-        </div>
-
-      </div>
-
-      <div class="section">
-
-        <div class="packages">
-
-          <div class="package">
-            <strong>500MB</strong>
-            <p>30 Days</p>
-            <div class="price">₦150</div>
-            <button class="buy-btn" onclick="buy('500MB Data',150)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>1GB</strong>
-            <p>30 Days</p>
-            <div class="price">₦300</div>
-            <button class="buy-btn" onclick="buy('1GB Data',300)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>2GB</strong>
-            <p>30 Days</p>
-            <div class="price">₦600</div>
-            <button class="buy-btn" onclick="buy('2GB Data',600)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>3GB</strong>
-            <p>30 Days</p>
-            <div class="price">₦900</div>
-            <button class="buy-btn" onclick="buy('3GB Data',900)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>5GB</strong>
-            <p>30 Days</p>
-            <div class="price">₦1,500</div>
-            <button class="buy-btn" onclick="buy('5GB Data',1500)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>10GB</strong>
-            <p>30 Days</p>
-            <div class="price">₦3,000</div>
-            <button class="buy-btn" onclick="buy('10GB Data',3000)">Buy</button>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- AIRTIME -->
-    <div class="page" id="airtime">
-
-      <div class="section-title">
-        <h3>Buy Airtime</h3>
-      </div>
-
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input id="airtimePhone" type="tel" placeholder="08012345678">
-      </div>
-
-      <div class="section">
-
-        <div class="packages">
-
-          <div class="package">
-            <strong>₦50</strong>
-            <p>Airtime</p>
-            <button class="buy-btn" onclick="buy('₦50 Airtime',50)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦100</strong>
-            <p>Airtime</p>
-            <button class="buy-btn" onclick="buy('₦100 Airtime',100)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦200</strong>
-            <p>Airtime</p>
-            <button class="buy-btn" onclick="buy('₦200 Airtime',200)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦500</strong>
-            <p>Airtime</p>
-            <button class="buy-btn" onclick="buy('₦500 Airtime',500)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦1,000</strong>
-            <p>Airtime</p>
-            <button class="buy-btn" onclick="buy('₦1,000 Airtime',1000)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦2,000</strong>
-            <p>Airtime</p>
-            <button class="buy-btn" onclick="buy('₦2,000 Airtime',2000)">Buy</button>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- RECHARGE -->
-    <div class="page" id="recharge">
-
-      <div class="section-title">
-        <h3>Recharge Card</h3>
-      </div>
-
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input id="rechargePhone" type="tel" placeholder="08012345678">
-      </div>
-
-      <div class="section">
-
-        <div class="packages">
-
-          <div class="package">
-            <strong>₦100</strong>
-            <p>Recharge Card</p>
-            <button class="buy-btn" onclick="buy('₦100 Recharge Card',100)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦200</strong>
-            <p>Recharge Card</p>
-            <button class="buy-btn" onclick="buy('₦200 Recharge Card',200)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦500</strong>
-            <p>Recharge Card</p>
-            <button class="buy-btn" onclick="buy('₦500 Recharge Card',500)">Buy</button>
-          </div>
-
-          <div class="package">
-            <strong>₦1,000</strong>
-            <p>Recharge Card</p>
-            <button class="buy-btn" onclick="buy('₦1,000 Recharge Card',1000)">Buy</button>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- TRANSACTIONS -->
-    <div class="page" id="transactions">
-
-      <div class="section-title">
-        <h3>Transactions</h3>
-      </div>
-
-      <div class="list" id="transactionsList">
-
-        <div class="list-item">
-          <div class="list-icon">📊</div>
-          <div class="list-info">
-            <strong>No transactions</strong>
-            <small>Your transactions will appear here</small>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- NOTIFICATIONS -->
-    <div class="page" id="notifications">
-
-      <div class="section-title">
-        <h3>Notifications</h3>
-      </div>
-
-      <div class="list">
-
-        <div class="list-item">
-          <div class="list-icon">🎉</div>
-          <div class="list-info">
-            <strong>Welcome to Camal Data</strong>
-            <small>Your account is ready.</small>
-          </div>
-        </div>
-
-        <div class="list-item">
-          <div class="list-icon">🔒</div>
-          <div class="list-info">
-            <strong>Account Security</strong>
-            <small>Keep your password private.</small>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- PROFILE -->
-    <div class="page" id="profile">
-
-      <div class="profile-card">
-
-        <div class="avatar" id="avatar">C</div>
-
-        <h2 id="profileName">User</h2>
-
-        <p id="profilePhone">08000000000</p>
-
-      </div>
-
-      <div class="settings">
-
-        <div class="setting">
-          <span>👤 Account</span>
-          <span>›</span>
-        </div>
-
-        <div class="setting">
-          <span>🔐 Security</span>
-          <span>›</span>
-        </div>
-
-        <div class="setting">
-          <span>⚙️ Settings</span>
-          <span>›</span>
-        </div>
-
-        <div class="setting" onclick="logout()">
-          <span style="color:red">🚪 Logout</span>
-          <span>›</span>
-        </div>
-
-      </div>
-
-    </div>
-
+  <div class="card">
+    <h3>Available Data</h3>
+    <div id="products"></div>
   </div>
 
-
-  <!-- BOTTOM NAV -->
-  <div class="bottom-nav">
-
-    <button class="nav-btn active" onclick="showPage('home',this)">
-      <div>🏠</div>
-      Home
-    </button>
-
-    <button class="nav-btn" onclick="showPage('data',this)">
-      <div>📱</div>
-      Data
-    </button>
-
-    <button class="nav-btn" onclick="showPage('airtime',this)">
-      <div>☎️</div>
-      Airtime
-    </button>
-
-    <button class="nav-btn" onclick="showPage('transactions',this)">
-      <div>📊</div>
-      History
-    </button>
-
-    <button class="nav-btn" onclick="showPage('profile',this)">
-      <div>👤</div>
-      Profile
-    </button>
-
+  <div class="card">
+    <h3>Recent Transactions</h3>
+    <div id="transactions"></div>
   </div>
+
+  <div id="adminButton" class="card hidden">
+    <h3>Owner / Admin</h3>
+    <button class="btn" onclick="openAdmin()">Open Admin Panel</button>
+  </div>
+
+</section>
+
+
+<!-- ADMIN -->
+<section id="adminPage" class="hidden">
+
+  <div class="topbar">
+    <h2>Admin Panel</h2>
+    <button class="logout" onclick="closeAdmin()">Back</button>
+  </div>
+
+  <div class="admin-nav">
+    <button class="active" onclick="adminSection('users',this)">Users</button>
+    <button onclick="adminSection('products',this)">Products</button>
+    <button onclick="adminSection('transactions',this)">Transactions</button>
+  </div>
+
+  <div id="adminContent"></div>
+
+</section>
 
 </div>
 
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-
+<div id="modal" class="modal hidden">
   <div class="modal-box">
-
-    <h2 id="modalTitle">Confirm Purchase</h2>
-
-    <p id="modalText" style="margin-bottom:18px;color:#666"></p>
-
-    <div class="modal-actions">
-
-      <button class="cancel" onclick="closeModal()">
-        Cancel
-      </button>
-
-      <button class="confirm" onclick="confirmPurchase()">
-        Confirm
-      </button>
-
-    </div>
-
+    <button class="close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
   </div>
-
 </div>
 
-
-<div class="toast" id="toast"></div>
+<div class="footer">
+  © 2026 Camal Data
+</div>
 
 
 <script>
 
-let balance = Number(localStorage.getItem("camalBalance")) || 5000;
+const API = "https://camal-backend.onrender.com";
 
-let transactions =
-JSON.parse(localStorage.getItem("camalTransactions")) || [];
+let token = localStorage.getItem("camal_token");
+let currentUser = null;
+let adminCurrentSection = "users";
 
-let currentPurchase = null;
+
+function apiHeaders(){
+  return {
+    "Content-Type":"application/json",
+    "Authorization":"Bearer " + token
+  };
+}
 
 
-/* LOGIN */
+function showMessage(text,error=false){
+  const box=document.getElementById("authMessage");
 
-function showRegister(){
+  box.innerHTML =
+    `<div class="message ${error ? "error":""}">${escapeHtml(text)}</div>`;
+}
 
-  document.getElementById("loginForm").style.display="none";
 
-  document.getElementById("registerForm").style.display="block";
-
+function escapeHtml(text){
+  return String(text ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 
 function showLogin(){
 
-  document.getElementById("loginForm").style.display="block";
+  document.getElementById("loginBox").classList.remove("hidden");
+  document.getElementById("registerBox").classList.add("hidden");
 
-  document.getElementById("registerForm").style.display="none";
+  document.getElementById("loginTab").classList.add("active");
+  document.getElementById("registerTab").classList.remove("active");
 
+  document.getElementById("authMessage").innerHTML="";
 }
 
 
-function register(){
+function showRegister(){
 
-  let name=document.getElementById("regName").value.trim();
+  document.getElementById("loginBox").classList.add("hidden");
+  document.getElementById("registerBox").classList.remove("hidden");
 
-  let phone=document.getElementById("regPhone").value.trim();
+  document.getElementById("loginTab").classList.remove("active");
+  document.getElementById("registerTab").classList.add("active");
 
-  let password=document.getElementById("regPassword").value.trim();
+  document.getElementById("authMessage").innerHTML="";
+}
+
+
+async function register(){
+
+  const name=document.getElementById("regName").value.trim();
+  const phone=document.getElementById("regPhone").value.trim();
+  const password=document.getElementById("regPassword").value;
 
   if(!name || !phone || !password){
-
-    toast("Please fill all fields");
-
+    showMessage("Cika dukkan bayanai.",true);
     return;
-
   }
 
-  localStorage.setItem("camalName",name);
+  try{
 
-  localStorage.setItem("camalPhone",phone);
+    const res=await fetch(API+"/api/register",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        name,
+        phone,
+        password
+      })
+    });
 
-  localStorage.setItem("camalPassword",password);
+    const data=await res.json();
 
-  toast("Account created successfully");
+    if(!res.ok){
+      showMessage(data.message || "Registration failed",true);
+      return;
+    }
 
-  showLogin();
+    token=data.token;
+    localStorage.setItem("camal_token",token);
 
+    currentUser=data.user;
+
+    openUserPage();
+
+  }catch(e){
+
+    showMessage("An samu matsalar server.",true);
+
+  }
 }
 
 
-function login(){
+async function login(){
 
-  let phone=document.getElementById("loginPhone").value.trim();
-
-  let password=document.getElementById("loginPassword").value.trim();
-
-  let savedPhone=localStorage.getItem("camalPhone");
-
-  let savedPassword=localStorage.getItem("camalPassword");
+  const phone=document.getElementById("loginPhone").value.trim();
+  const password=document.getElementById("loginPassword").value;
 
   if(!phone || !password){
-
-    toast("Enter phone and password");
-
+    showMessage("Shigar da phone da password.",true);
     return;
-
   }
 
-  if(savedPhone && (phone!==savedPhone || password!==savedPassword)){
-    toast("Wrong phone number or password");
+  try{
 
+    const res=await fetch(API+"/api/login",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        phone,
+        password
+      })
+    });
+
+    const data=await res.json();
+
+    if(!res.ok){
+      showMessage(data.message || "Login failed",true);
+      return;
+    }
+
+    token=data.token;
+
+    localStorage.setItem("camal_token",token);
+
+    currentUser=data.user;
+
+    openUserPage();
+
+  }catch(e){
+
+    showMessage("Server bai amsa ba.",true);
+
+  }
+}
+
+
+async function loadMe(){
+
+  if(!token){
+    showAuth();
     return;
-
   }
 
-  if(!savedPhone){
+  try{
 
-    localStorage.setItem("camalName","Camal User");
+    const res=await fetch(API+"/api/me",{
+      headers:apiHeaders()
+    });
 
-    localStorage.setItem("camalPhone",phone);
+    const data=await res.json();
 
-  }
+    if(!res.ok){
+      localStorage.removeItem("camal_token");
+      token=null;
+      showAuth();
+      return;
+    }
 
-  localStorage.setItem("camalLogged","yes");
+    currentUser=data.user || data;
 
-  openApp();
+    openUserPage();
 
-}
+  }catch(e){
 
-
-function openApp(){
-
-  document.getElementById("auth").style.display="none";
-
-  document.getElementById("app").style.display="block";
-
-  let name=localStorage.getItem("camalName") || "Camal User";
-
-  let phone=localStorage.getItem("camalPhone") || "";
-
-  document.getElementById("userName").textContent=name+" 👋";
-
-  document.getElementById("profileName").textContent=name;
-
-  document.getElementById("profilePhone").textContent=phone;
-
-  document.getElementById("avatar").textContent=name.charAt(0).toUpperCase();
-
-  updateBalance();
-
-  renderTransactions();
-
-}
-
-
-function logout(){
-
-  localStorage.removeItem("camalLogged");
-
-  location.reload();
-
-}
-
-
-/* PAGE */
-
-function showPage(page,button){
-
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
-
-  document.getElementById(page).classList.add("active");
-
-  document.querySelectorAll(".nav-btn").forEach(b=>{
-    b.classList.remove("active");
-  });
-
-  if(button){
-
-    button.classList.add("active");
+    showAuth();
 
   }
+}
 
-  window.scrollTo(0,0);
+
+function showAuth(){
+
+  document.getElementById("authPage").classList.remove("hidden");
+  document.getElementById("userPage").classList.add("hidden");
+  document.getElementById("adminPage").classList.add("hidden");
 
 }
 
 
-/* BALANCE */
+function openUserPage(){
 
-function updateBalance(){
+  document.getElementById("authPage").classList.add("hidden");
+  document.getElementById("userPage").classList.remove("hidden");
+  document.getElementById("adminPage").classList.add("hidden");
 
-  document.getElementById("balance").textContent =
-  "₦"+balance.toLocaleString()+".00";
+  document.getElementById("welcomeName").textContent =
+    "Hello, " + (currentUser.name || "User");
 
-  localStorage.setItem("camalBalance",balance);
+  document.getElementById("userPhone").textContent =
+    currentUser.phone || "";
 
-}
-
-
-/* BUY */
-
-function buy(name,price){
-
-  if(balance < price){
-
-    toast("Insufficient wallet balance");
-
-    return;
-
+  if(currentUser.role==="owner" || currentUser.role==="admin"){
+    document.getElementById("adminButton").classList.remove("hidden");
+  }else{
+    document.getElementById("adminButton").classList.add("hidden");
   }
 
-  currentPurchase={
-    name:name,
-    price:price
-  };
+  loadWallet();
+  loadProducts();
+  loadTransactions();
+}
 
-  document.getElementById("modalTitle").textContent=
-  "Confirm Purchase";
 
-  document.getElementById("modalText").textContent=
-  name+" for ₦"+price.toLocaleString()+"?";
+async function loadWallet(){
 
-  document.getElementById("modal").classList.add("show");
+  try{
+
+    const res=await fetch(API+"/api/wallet",{
+      headers:apiHeaders()
+    });
+
+    const data=await res.json();
+
+    if(res.ok){
+
+      const balanceValue =
+        data.balance ??
+        data.wallet?.balance ??
+        0;
+
+      document.getElementById("balance").textContent =
+        money(balanceValue);
+    }
+
+  }catch(e){}
 
 }
 
 
-function confirmPurchase(){
+function money(value){
 
-  if(!currentPurchase) return;
-
-  balance -= currentPurchase.price;
-
-  transactions.unshift({
-
-    name:currentPurchase.name,
-
-    amount:currentPurchase.price,
-
-    date:new Date().toLocaleString()
-
-  });
-
-  localStorage.setItem(
-    "camalTransactions",
-    JSON.stringify(transactions)
+  return "₦" + Number(value || 0).toLocaleString(
+    "en-NG",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
   );
 
-  updateBalance();
+}
 
-  renderTransactions();
 
-  closeModal();
+async function loadProducts(){
 
-  toast("Purchase successful ✅");
+  const box=document.getElementById("products");
+
+  box.innerHTML="Loading...";
+
+  try{
+
+    const res=await fetch(API+"/api/products");
+    const data=await res.json();
+
+    const products=data.products || data || [];
+
+    if(!products.length){
+
+      box.innerHTML="<p>No products available yet.</p>";
+      return;
+
+    }
+
+    box.innerHTML=products.map(p=>`
+
+      <div class="item">
+
+        <b>${escapeHtml(p.name)}</b>
+
+        <br>
+
+        <small>
+          ${escapeHtml(p.network || "")}
+        </small>
+
+        <br>
+
+        <span class="price">
+          ${money(p.price)}
+        </span>
+
+        <button
+          class="btn small"
+          onclick="buyProduct(${p.id})">
+          Buy
+        </button>
+
+      </div>
+
+    `).join("");
+
+  }catch(e){
+
+    box.innerHTML="<p>Unable to load products.</p>";
+
+  }
+
+}
+
+
+async function loadTransactions(){
+
+  const box=document.getElementById("transactions");
+
+  box.innerHTML="Loading...";
+
+  try{
+
+    const res=await fetch(API+"/api/transactions",{
+      headers:apiHeaders()
+    });
+
+    const data=await res.json();
+
+    const list=data.transactions || data || [];
+
+    if(!list.length){
+
+      box.innerHTML="<p>No transactions yet.</p>";
+      return;
+
+    }
+
+    box.innerHTML=list.slice(0,10).map(t=>`
+
+      <div class="item">
+
+        <b>${escapeHtml(t.type || "")}</b>
+
+        <br>
+
+        <small>
+          ${escapeHtml(t.phone || "")}
+        </small>
+
+        <br>
+
+        <span>${money(t.amount)}</span>
+
+        <br>
+
+        <span class="badge ${
+          t.status==="failed" ? "red" :
+          t.status==="pending" ? "orange" : ""
+        }">
+          ${escapeHtml(t.status || "pending")}
+        </span>
+
+      </div>
+
+    `).join("");
+
+  }catch(e){
+
+    box.innerHTML="<p>Unable to load transactions.</p>";
+
+  }
+
+}
+
+
+function openBuy(type){
+
+  if(type==="data"){
+
+    openModal(`
+
+      <h2>Buy Data</h2>
+
+      <input id="buyPhone" placeholder="Phone number">
+
+      <select id="network">
+        <option value="MTN">MTN</option>
+        <option value="Airtel">Airtel</option>
+        <option value="Glo">Glo</option>
+        <option value="9mobile">9mobile</option>
+      </select>
+
+      <input id="dataAmount" type="number" placeholder="Amount">
+
+      <button class="btn" onclick="buyData()">
+        Buy Data
+      </button>
+
+    `);
+
+  }else{
+
+    openModal(`
+
+      <h2>${type==="airtime" ? "Buy Airtime":"Recharge"}</h2>
+
+      <input id="buyPhone" placeholder="Phone number">
+
+      <input id="buyAmount" type="number" placeholder="Amount">
+
+      <button class="btn"
+        onclick="${
+          type==="airtime" ? "buyAirtime()" : "buyRecharge()"
+        }">
+        Continue
+      </button>
+
+    `);
+
+  }
+
+}
+
+
+async function buyData(){
+
+  const phone=document.getElementById("buyPhone").value.trim();
+  const network=document.getElementById("network").value;
+  const amount=Number(document.getElementById("dataAmount").value);
+
+  if(!phone || !amount){
+    alert("Cika bayanai.");
+    return;
+  }
+
+  await purchase("/api/data/buy",{
+    phone,
+    network,
+    amount
+  });
+
+}
+
+
+async function buyAirtime(){
+
+  const phone=document.getElementById("buyPhone").value.trim();
+  const amount=Number(document.getElementById("buyAmount").value);
+
+  await purchase("/api/airtime/buy",{
+    phone,
+    amount
+  });
+
+}
+
+
+async function buyRecharge(){
+
+  const phone=document.getElementById("buyPhone").value.trim();
+  const amount=Number(document.getElementById("buyAmount").value);
+
+  await purchase("/api/recharge/buy",{
+    phone,
+    amount
+  });
+
+}
+
+
+async function buyProduct(id){
+
+  const product=window.products?.find(x=>x.id===id);
+
+  if(!product){
+    alert("Product bai samu ba.");
+    return;
+  }
+
+  const phone=prompt("Shigar da phone number:");
+
+  if(!phone) return;
+
+  const type=product.type;
+
+  if(type==="data"){
+
+    await purchase("/api/data/buy",{
+      phone,
+      amount:Number(product.price),
+      product:product.name,
+      network:product.network
+    });
+
+  }
+
+}
+
+
+async function purchase(url,payload){
+
+  try{
+
+    const res=await fetch(API+url,{
+      method:"POST",
+      headers:apiHeaders(),
+      body:JSON.stringify(payload)
+    });
+
+    const data=await res.json();
+
+    if(!res.ok){
+
+      alert(data.message || "Purchase failed");
+      return;
+
+    }
+
+    alert(data.message || "Order successful");
+
+    closeModal();
+
+    loadWallet();
+    loadTransactions();
+
+  }catch(e){
+
+    alert("Server bai amsa ba.");
+
+  }
+
+}
+
+
+async function fundWallet(){
+
+  const amount=prompt("Nawa zaka saka a wallet?");
+
+  if(!amount) return;
+
+  try{
+
+    const res=await fetch(API+"/api/wallet/fund",{
+      method:"POST",
+      headers:apiHeaders(),
+      body:JSON.stringify({
+        amount:Number(amount)
+      })
+    });
+
+    const data=await res.json();
+
+    alert(data.message || "Wallet updated");
+
+    loadWallet();
+
+  }catch(e){
+
+    alert("Error");
+
+  }
+
+}
+
+
+async function logout(){
+
+  try{
+
+    await fetch(API+"/api/logout",{
+      method:"POST",
+      headers:apiHeaders()
+    });
+
+  }catch(e){}
+
+  localStorage.removeItem("camal_token");
+
+  token=null;
+  currentUser=null;
+
+  showAuth();
+
+}
+
+
+function openModal(content){
+
+  document.getElementById("modalContent").innerHTML=content;
+
+  document.getElementById("modal").classList.remove("hidden");
 
 }
 
 
 function closeModal(){
 
-  document.getElementById("modal").classList.remove("show");
-
-  currentPurchase=null;
+  document.getElementById("modal").classList.add("hidden");
 
 }
 
 
-/* FUND WALLET */
+function openAdmin(){
 
-function fundWallet(){
+  document.getElementById("userPage").classList.add("hidden");
+  document.getElementById("adminPage").classList.remove("hidden");
 
-  let amount=prompt("Enter amount to fund wallet:");
+  adminSection("users");
 
-  amount=Number(amount);
+}
 
-  if(!amount || amount<=0){
 
-    toast("Invalid amount");
+function closeAdmin(){
 
-    return;
+  document.getElementById("adminPage").classList.add("hidden");
+  document.getElementById("userPage").classList.remove("hidden");
+
+}
+
+
+function adminSection(section,button){
+
+  adminCurrentSection=section;
+
+  document.querySelectorAll(".admin-nav button")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button) button.classList.add("active");
+
+  if(section==="users") loadAdminUsers();
+
+  if(section==="products") loadAdminProducts();
+
+  if(section==="transactions") loadAdminTransactions();
+
+}
+
+
+async function loadAdminUsers(){
+
+  const box=document.getElementById("adminContent");
+
+  box.innerHTML="<div class='card'>Loading users...</div>";
+
+  try{
+
+    const res=await fetch(API+"/api/admin/users",{
+      headers:apiHeaders()
+    });
+
+    const data=await res.json();
+
+    if(!res.ok){
+      box.innerHTML="<div class='card'>Access denied.</div>";
+      return;
+    }
+
+    const users=data.users || data || [];
+
+    box.innerHTML=`
+
+      <div class="card">
+
+        <h3>Users</h3>
+
+        <table>
+
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Role</th>
+          </tr>
+
+          ${users.map(u=>`
+
+            <tr>
+
+              <td>${escapeHtml(u.name)}</td>
+
+              <td>${escapeHtml(u.phone)}</td>
+
+              <td>
+
+                <span class="badge">
+                  ${escapeHtml(u.role)}
+                </span>
+
+                ${
+                  u.role!=="owner"
+                  ?
+                  `<br>
+                  <button
+                    class="btn small"
+                    onclick="changeRole(${u.id},'${
+                      u.role==="admin" ? "user":"admin"
+                    }')">
+                    ${u.role==="admin" ? "Make User":"Make Admin"}
+                  </button>`
+                  :""
+                }
+
+              </td>
+
+            </tr>
+
+          `).join("")}
+
+        </table>
+
+      </div>
+
+    `;
+
+  }catch(e){
+
+    box.innerHTML="<div class='card'>Error loading users.</div>";
 
   }
 
-  balance += amount;
-
-  transactions.unshift({
-
-    name:"Wallet Funding",
-
-    amount:amount,
-
-    date:new Date().toLocaleString()
-
-  });
-
-  localStorage.setItem(
-    "camalTransactions",
-    JSON.stringify(transactions)
-  );
-
-  updateBalance();
-
-  renderTransactions();
-
-  toast("Wallet funded successfully");
-
 }
 
 
-/* TRANSACTIONS */
+async function changeRole(id,role){
 
-function renderTransactions(){
+  if(!confirm("Change user role?")) return;
 
-  let list=document.getElementById("transactionsList");
+  try{
 
-  let recent=document.getElementById("recentTransactions");
+    const res=await fetch(
+      API+"/api/admin/users/"+id+"/role",
+      {
+        method:"PUT",
+        headers:apiHeaders(),
+        body:JSON.stringify({role})
+      }
+    );
 
-  if(transactions.length===0){
+    const data=await res.json();
 
-    list.innerHTML=`
-      <div class="list-item">
-        <div class="list-icon">📊</div>
-        <div class="list-info">
-          <strong>No transactions</strong>
-          <small>Your transactions will appear here</small>
-        </div>
-      </div>
-    `;
+    alert(data.message || "Role updated");
 
-    return;
+    loadAdminUsers();
+
+  }catch(e){
+
+    alert("Error");
 
   }
 
-  list.innerHTML="";
+}
 
-  transactions.forEach(t=>{
 
-    list.innerHTML += `
+async function loadAdminProducts(){
 
-      <div class="list-item">
+  const box=document.getElementById("adminContent");
 
-        <div class="list-icon">💳</div>
+  box.innerHTML=`
 
-        <div class="list-info">
+    <div class="card">
 
-          <strong>${t.name}</strong>
+      <h3>Add Product</h3>
 
-          <small>${t.date}</small>
+      <input id="pName" placeholder="Product name">
 
-        </div>
+      <select id="pType">
+        <option value="data">Data</option>
+        <option value="airtime">Airtime</option>
+        <option value="recharge">Recharge</option>
+      </select>
 
-        <div class="amount">
-          -₦${t.amount.toLocaleString()}
-        </div>
+      <input id="pNetwork" placeholder="Network">
+
+      <input id="pPrice" type="number" placeholder="Price">
+
+      <button class="btn" onclick="addProduct()">
+        Add Product
+      </button>
+
+    </div>
+
+    <div id="adminProductList"></div>
+  `;
+
+  try{
+
+    const res=await fetch(API+"/api/admin/products",{
+      headers:apiHeaders()
+    });
+
+    const data=await res.json();
+
+    const products=data.products || data || [];
+
+    window.products=products;
+
+    document.getElementById("adminProductList").innerHTML=`
+
+      <div class="card">
+
+        <h3>Products</h3>
+
+        ${
+          products.length
+          ?
+          products.map(p=>`
+
+            <div class="item">
+
+              <b>${escapeHtml(p.name)}</b>
+
+              <br>
+
+              ${escapeHtml(p.network || "")}
+
+              <br>
+
+              <span class="price">
+                ${money(p.price)}
+              </span>
+
+              <br>
+
+              <button
+                class="btn small"
+                onclick="editProduct(${p.id})">
+                Edit
+              </button>
+
+              <button
+                class="btn danger small"
+                onclick="deleteProduct(${p.id})">
+                Delete
+              </button>
+
+            </div>
+
+          `).join("")
+          :
+          "<p>No products.</p>"
+        }
 
       </div>
 
     `;
 
-  });
+  }catch(e){
+
+    document.getElementById("adminProductList").innerHTML=
+      "<div class='card'>Error.</div>";
+
+  }
+
+}
 
 
-  recent.innerHTML="";
+async function addProduct(){
 
-  transactions.slice(0,3).forEach(t=>{
+  const name=document.getElementById("pName").value.trim();
+  const type=document.getElementById("pType").value;
+  const network=document.getElementById("pNetwork").value.trim();
+  const price=Number(document.getElementById("pPrice").value);
 
-    recent.innerHTML += `
+  if(!name || !price){
+    alert("Cika product name da price.");
+    return;
+  }
 
-      <div class="list-item">
+  try{
 
-        <div class="list-icon">💳</div>
+    const res=await fetch(API+"/api/admin/products",{
+      method:"POST",
+      headers:apiHeaders(),
+      body:JSON.stringify({
+        name,
+        type,
+        network,
+        price,
+        active:1
+      })
+    });
 
-        <div class="list-info">
+    const data=await res.json();
 
-          <strong>${t.name}</strong>
+    alert(data.message || "Product added");
 
-          <small>${t.date}</small>
+    loadAdminProducts();
 
-        </div>
+  }catch(e){
 
-        <div class="amount">
-          -₦${t.amount.toLocaleString()}
-        </div>
+    alert("Error");
+
+  }
+
+}
+
+
+async function editProduct(id){
+
+  const p=window.products.find(x=>x.id===id);
+
+  if(!p) return;
+
+  const name=prompt("Product name:",p.name);
+
+  if(name===null) return;
+
+  const price=prompt("Price:",p.price);
+
+  if(price===null) return;
+
+  const network=prompt("Network:",p.network || "");
+
+  if(network===null) return;
+
+  try{
+
+    const res=await fetch(
+      API+"/api/admin/products/"+id,
+      {
+        method:"PUT",
+        headers:apiHeaders(),
+        body:JSON.stringify({
+          name,
+          price:Number(price),
+          network
+        })
+      }
+    );
+
+    const data=await res.json();
+
+    alert(data.message || "Updated");
+
+    loadAdminProducts();
+
+  }catch(e){
+
+    alert("Error");
+
+  }
+
+}
+
+
+async function deleteProduct(id){
+
+  if(!confirm("Delete this product?")) return;
+
+  try{
+
+    const res=await fetch(
+      API+"/api/admin/products/"+id,
+      {
+        method:"DELETE",
+        headers:apiHeaders()
+      }
+    );
+
+    const data=await res.json();
+
+    alert(data.message || "Deleted");
+
+    loadAdminProducts();
+
+  }catch(e){
+
+    alert("Error");
+
+  }
+
+}
+
+
+async function loadAdminTransactions(){
+
+  const box=document.getElementById("adminContent");
+
+  box.innerHTML="<div class='card'>Loading transactions...</div>";
+
+  try{
+
+    const res=await fetch(API+"/api/admin/transactions",{
+      headers:apiHeaders()
+    });
+
+    const data=await res.json();
+
+    const transactions=data.transactions || data || [];
+
+    box.innerHTML=`
+
+      <div class="card">
+
+        <h3>All Transactions</h3>
+
+        ${
+          transactions.length
+          ?
+          transactions.map(t=>`
+
+            <div class="item">
+
+              <b>${escapeHtml(t.type || "")}</b>
+
+              <br>
+
+              User ID:
+              ${escapeHtml(t.user_id)}
+
+              <br>
+
+              Phone:
+              ${escapeHtml(t.phone || "")}
+
+              <br>
+
+              Amount:
+              <b>${money(t.amount)}</b>
+
+              <br>
+
+              Status:
+              <span class="badge ${
+                t.status==="failed"
+                ? "red"
+                : t.status==="pending"
+                ? "orange"
+                : ""
+              }">
+                ${escapeHtml(t.status)}
+              </span>
+
+              <br>
+
+              ${
+                t.status==="pending"
+                ?
+                `
+                <button
+                  class="btn small"
+                  onclick="updateTransaction(${t.id},'success')">
+                  Approve
+                </button>
+
+                <button
+                  class="btn danger small"
+                  onclick="updateTransaction(${t.id},'failed')">
+                  Fail
+                </button>
+                `
+                :""
+              }
+
+            </div>
+
+          `).join("")
+          :
+          "<p>No transactions.</p>"
+        }
 
       </div>
 
     `;
 
-  });
+  }catch(e){
+
+    box.innerHTML="<div class='card'>Error loading transactions.</div>";
+
+  }
 
 }
 
 
-/* TOAST */
+async function updateTransaction(id,status){
 
-function toast(message){
+  try{
 
-  let t=document.getElementById("toast");
+    const res=await fetch(
+      API+"/api/admin/transactions/"+id+"/status",
+      {
+        method:"PUT",
+        headers:apiHeaders(),
+        body:JSON.stringify({status})
+      }
+    );
 
-  t.textContent=message;
+    const data=await res.json();
 
-  t.classList.add("show");
+    alert(data.message || "Updated");
 
-  setTimeout(()=>{
-    t.classList.remove("show");
-  },2500);
+    loadAdminTransactions();
+    loadWallet();
+    loadTransactions();
+
+  }catch(e){
+
+    alert("Error");
+
+  }
 
 }
 
 
-/* START */
+document.addEventListener("DOMContentLoaded",()=>{
 
-if(localStorage.getItem("camalLogged")==="yes"){
+  loadMe();
 
-  openApp();
-
-}
+});
 
 </script>
 
 </body>
-  </html>
+      </html>
