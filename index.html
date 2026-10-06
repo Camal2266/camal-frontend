@@ -1,422 +1,1042 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Camal Data</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --dark:#0f172a;
+    --dark2:#172554;
+    --bg:#f1f5f9;
+    --white:#ffffff;
+    --text:#0f172a;
+    --muted:#64748b;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --border:#e2e8f0;
 }
 
 body{
-  background:#f4f5f6;
-  color:#17221d;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
 
-button,input,select{
-  font:inherit;
+button,
+input,
+select{
+    font:inherit;
 }
 
 button{
-  cursor:pointer;
-  border:0;
+    cursor:pointer;
+    border:0;
 }
 
 .hidden{
-  display:none!important;
+    display:none!important;
 }
 
-.container{
-  width:100%;
-  max-width:500px;
-  margin:auto;
-  padding:18px;
+/* SPLASH */
+
+#splash{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(145deg,#0f172a,#172554,#2563eb);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    color:white;
 }
 
-.header{
-  background:#087f5b;
-  color:white;
-  padding:18px;
-  text-align:center;
-  font-size:24px;
-  font-weight:bold;
+.splash-box{
+    text-align:center;
+    animation:fadeUp .8s ease;
 }
 
-.card{
-  background:white;
-  border-radius:15px;
-  padding:18px;
-  margin:15px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
+.logo{
+    width:78px;
+    height:78px;
+    margin:auto;
+    border-radius:22px;
+    background:white;
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:900;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
 
-h2,h3{
-  margin-bottom:15px;
+.splash-title{
+    font-size:34px;
+    font-weight:900;
+    margin-top:20px;
 }
 
-input,select{
-  width:100%;
-  padding:13px;
-  margin:7px 0;
-  border:1px solid #ddd;
-  border-radius:9px;
-  outline:none;
+.splash-sub{
+    opacity:.8;
+    margin-top:7px;
 }
 
-input:focus,select:focus{
-  border-color:#087f5b;
+.loader{
+    width:42px;
+    height:42px;
+    border:4px solid rgba(255,255,255,.25);
+    border-top-color:white;
+    border-radius:50%;
+    margin:28px auto 0;
+    animation:spin 1s linear infinite;
 }
 
-.btn{
-  width:100%;
-  padding:13px;
-  border-radius:9px;
-  background:#087f5b;
-  color:white;
-  font-weight:bold;
-  margin-top:8px;
+@keyframes spin{
+    to{transform:rotate(360deg)}
 }
 
-.btn.secondary{
-  background:#555;
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-.btn.danger{
-  background:#c62828;
+/* AUTH */
+
+.auth-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    background:
+    radial-gradient(circle at top right,#bfdbfe,transparent 35%),
+    var(--bg);
 }
 
-.btn.warning{
-  background:#e68a00;
+.auth-card{
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:30px;
+    border-radius:24px;
+    box-shadow:0 20px 60px rgba(15,23,42,.12);
 }
 
-.btn.small{
-  width:auto;
-  padding:8px 12px;
-  margin:3px;
+.auth-brand{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.tabs{
-  display:flex;
-  gap:8px;
-  margin:15px 0;
+.auth-brand .mini-logo{
+    width:62px;
+    height:62px;
+    margin:auto;
+    border-radius:18px;
+    background:var(--primary);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+    font-weight:900;
 }
 
-.tab{
-  flex:1;
-  padding:12px 5px;
-  border-radius:9px;
-  background:#ddd;
+.auth-brand h1{
+    margin-top:12px;
+    font-size:27px;
 }
 
-.tab.active{
-  background:#087f5b;
-  color:white;
+.auth-brand p{
+    color:var(--muted);
+    margin-top:5px;
 }
 
-.balance{
-  background:linear-gradient(135deg,#087f5b,#0ca678);
-  color:white;
-  border-radius:16px;
-  padding:22px;
-  margin-bottom:15px;
+.form-group{
+    margin-bottom:15px;
 }
 
-.balance small{
-  opacity:.9;
+.form-group label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:7px;
 }
 
-.balance strong{
-  display:block;
-  font-size:30px;
-  margin-top:8px;
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:none;
+    background:#f8fafc;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+.form-group input:focus,
+.form-group select:focus{
+    border-color:var(--primary);
+    background:white;
 }
 
-.option{
-  background:#f1f3f5;
-  padding:15px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
+.primary-btn{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    background:var(--primary);
+    color:white;
+    font-weight:800;
+    margin-top:5px;
 }
 
-.option b{
-  display:block;
-  margin-top:6px;
+.primary-btn:hover{
+    background:var(--primary-dark);
 }
 
-.item{
-  border-bottom:1px solid #eee;
-  padding:12px 0;
+.auth-switch{
+    text-align:center;
+    margin-top:20px;
+    color:var(--muted);
+    font-size:14px;
 }
 
-.item:last-child{
-  border-bottom:0;
+.link-btn{
+    background:none;
+    color:var(--primary);
+    font-weight:800;
 }
 
-.badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  background:#e7f5ee;
-  color:#087f5b;
-  font-size:12px;
-}
+/* APP */
 
-.badge.red{
-  background:#ffebee;
-  color:#c62828;
-}
-
-.badge.orange{
-  background:#fff3e0;
-  color:#e68a00;
-}
-
-.price{
-  color:#087f5b;
-  font-weight:bold;
+#app{
+    min-height:100vh;
 }
 
 .topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
+    height:70px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.logout{
-  background:#c62828;
-  color:white;
-  padding:8px 12px;
-  border-radius:8px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:900;
+    font-size:19px;
 }
 
-.message{
-  padding:11px;
-  border-radius:9px;
-  margin:10px 0;
-  background:#e7f5ee;
-  color:#087f5b;
+.brand-logo{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:var(--primary);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:900;
 }
 
-.message.error{
-  background:#ffebee;
-  color:#c62828;
+.logout-btn{
+    padding:9px 14px;
+    border-radius:10px;
+    background:#fee2e2;
+    color:#b91c1c;
+    font-weight:700;
 }
 
-.admin-nav{
-  display:flex;
-  gap:6px;
-  overflow-x:auto;
-  margin-bottom:12px;
+.container{
+    width:min(1100px,94%);
+    margin:auto;
+    padding:25px 0 100px;
 }
 
-.admin-nav button{
-  white-space:nowrap;
-  padding:10px;
-  border-radius:8px;
-  background:#ddd;
+.welcome{
+    margin-bottom:20px;
 }
 
-.admin-nav button.active{
-  background:#087f5b;
-  color:white;
+.welcome h2{
+    font-size:25px;
 }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:13px;
+.welcome p{
+    color:var(--muted);
+    margin-top:5px;
 }
 
-th,td{
-  padding:9px 5px;
-  border-bottom:1px solid #eee;
-  text-align:left;
+.balance-card{
+    background:linear-gradient(135deg,#0f172a,#2563eb);
+    color:white;
+    border-radius:24px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(37,99,235,.25);
+    margin-bottom:20px;
 }
+
+.balance-label{
+    opacity:.8;
+}
+
+.balance{
+    font-size:36px;
+    font-weight:900;
+    margin:10px 0 20px;
+}
+
+.wallet-actions{
+    display:flex;
+    gap:10px;
+}
+
+.wallet-btn{
+    padding:11px 15px;
+    border-radius:10px;
+    background:white;
+    color:var(--dark);
+    font-weight:800;
+}
+
+.section-title{
+    margin:25px 0 14px;
+    font-size:19px;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.quick-card{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quick-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(15,23,42,.08);
+}
+
+.quick-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.quick-card h3{
+    font-size:16px;
+}
+
+.quick-card p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+}
+
+/* MODALS */
 
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:20;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:18px;
+    z-index:500;
 }
 
-.modal-box{
-  background:white;
-  width:100%;
-  max-width:450px;
-  max-height:90vh;
-  overflow:auto;
-  border-radius:15px;
-  padding:20px;
+.modal-card{
+    width:100%;
+    max-width:480px;
+    max-height:90vh;
+    overflow:auto;
+    background:white;
+    border-radius:22px;
+    padding:24px;
 }
 
-.close{
-  float:right;
-  background:#eee;
-  border-radius:50%;
-  width:32px;
-  height:32px;
+.modal-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
 }
 
-.footer{
-  text-align:center;
-  padding:25px;
-  color:#777;
-  font-size:13px;
+.close-btn{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#f1f5f9;
+    font-size:20px;
+}
+
+.plans{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:12px;
+}
+
+.plan{
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:15px;
+    background:white;
+    cursor:pointer;
+}
+
+.plan:hover{
+    border-color:var(--primary);
+}
+
+.plan.selected{
+    border:2px solid var(--primary);
+    background:#eff6ff;
+}
+
+.plan-name{
+    font-weight:900;
+}
+
+.plan-price{
+    margin-top:7px;
+    color:var(--primary);
+    font-weight:900;
+}
+
+.network-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+/* TRANSACTIONS */
+
+.transaction{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.transaction-title{
+    font-weight:800;
+}
+
+.transaction-small{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:5px;
+}
+
+.status{
+    font-weight:800;
+    font-size:13px;
+}
+
+.status.successful{
+    color:var(--success);
+}
+
+.status.pending{
+    color:#ca8a04;
+}
+
+.status.failed{
+    color:var(--danger);
+}
+
+/* ADMIN */
+
+.admin-banner{
+    background:linear-gradient(135deg,#111827,#1e3a8a);
+    color:white;
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.admin-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+}
+
+.admin-card .big{
+    font-size:27px;
+    font-weight:900;
+    margin-top:7px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:white;
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:100;
+}
+
+.nav-btn{
+    background:none;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:700;
+    text-align:center;
+}
+
+.nav-btn span{
+    display:block;
+    font-size:21px;
+    margin-bottom:2px;
+}
+
+.nav-btn.active{
+    color:var(--primary);
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:85px;
+    transform:translateX(-50%);
+    background:#0f172a;
+    color:white;
+    padding:13px 18px;
+    border-radius:12px;
+    z-index:9999;
+    display:none;
+    max-width:90%;
+    text-align:center;
+}
+
+@media(max-width:650px){
+
+    .quick-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .balance{
+        font-size:31px;
+    }
+
+    .auth-card{
+        padding:23px;
+    }
+}
+
+@media(max-width:420px){
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    .plans{
+        grid-template-columns:1fr 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  Camal Data
-</div>
+<!-- SPLASH -->
 
-<div class="container">
+<div id="splash">
+    <div class="splash-box">
+        <div class="logo">C</div>
+        <div class="splash-title">CAMAL DATA</div>
+        <div class="splash-sub">Fast • Reliable • Secure</div>
+        <div class="loader"></div>
+    </div>
+</div>
 
 <!-- AUTH -->
-<section id="authPage">
 
-  <div class="card">
-    <div class="tabs">
-      <button class="tab active" id="loginTab" onclick="showLogin()">Login</button>
-      <button class="tab" id="registerTab" onclick="showRegister()">Register</button>
+<div id="auth" class="auth-page hidden">
+
+    <div class="auth-card">
+
+        <div class="auth-brand">
+            <div class="mini-logo">C</div>
+            <h1>Camal Data</h1>
+            <p id="authSubtitle">Login to your account</p>
+        </div>
+
+        <!-- LOGIN -->
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input
+                    id="loginPhone"
+                    type="tel"
+                    placeholder="08012345678"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    id="loginPassword"
+                    type="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <button class="primary-btn" type="submit">
+                Login
+            </button>
+
+            <div class="auth-switch">
+                Don't have an account?
+                <button
+                    type="button"
+                    class="link-btn"
+                    onclick="showRegister()"
+                >
+                    Register
+                </button>
+            </div>
+
+        </form>
+
+        <!-- REGISTER -->
+
+        <form id="registerForm" class="hidden">
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input
+                    id="registerName"
+                    type="text"
+                    placeholder="Your name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input
+                    id="registerPhone"
+                    type="tel"
+                    placeholder="08012345678"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    id="registerPassword"
+                    type="password"
+                    placeholder="Create password"
+                    required
+                >
+            </div>
+
+            <button class="primary-btn" type="submit">
+                Create Account
+            </button>
+
+            <div class="auth-switch">
+                Already have an account?
+                <button
+                    type="button"
+                    class="link-btn"
+                    onclick="showLogin()"
+                >
+                    Login
+                </button>
+            </div>
+
+        </form>
+
     </div>
-
-    <div id="authMessage"></div>
-
-    <div id="loginBox">
-      <h2>Login</h2>
-
-      <input id="loginPhone" type="tel" placeholder="Phone number">
-      <input id="loginPassword" type="password" placeholder="Password">
-
-      <button class="btn" onclick="login()">Login</button>
-    </div>
-
-    <div id="registerBox" class="hidden">
-      <h2>Create Account</h2>
-
-      <input id="regName" type="text" placeholder="Full name">
-      <input id="regPhone" type="tel" placeholder="Phone number">
-      <input id="regPassword" type="password" placeholder="Password">
-
-      <button class="btn" onclick="register()">Create Account</button>
-    </div>
-  </div>
-
-</section>
-
-
-<!-- USER APP -->
-<section id="userPage" class="hidden">
-
-  <div class="topbar">
-    <div>
-      <b id="welcomeName">Welcome</b>
-      <br>
-      <small id="userPhone"></small>
-    </div>
-
-    <button class="logout" onclick="logout()">Logout</button>
-  </div>
-
-  <div class="balance">
-    <small>Wallet Balance</small>
-    <strong id="balance">₦0.00</strong>
-  </div>
-
-  <div class="grid">
-
-    <div class="option" onclick="openBuy('data')">
-      📶
-      <b>Buy Data</b>
-    </div>
-
-    <div class="option" onclick="openBuy('airtime')">
-      📞
-      <b>Airtime</b>
-    </div>
-
-    <div class="option" onclick="openBuy('recharge')">
-      ⚡
-      <b>Recharge</b>
-    </div>
-
-    <div class="option" onclick="fundWallet()">
-      💰
-      <b>Fund Wallet</b>
-    </div>
-
-  </div>
-
-  <div class="card">
-    <h3>Available Data</h3>
-    <div id="products"></div>
-  </div>
-
-  <div class="card">
-    <h3>Recent Transactions</h3>
-    <div id="transactions"></div>
-  </div>
-
-  <div id="adminButton" class="card hidden">
-    <h3>Owner / Admin</h3>
-    <button class="btn" onclick="openAdmin()">Open Admin Panel</button>
-  </div>
-
-</section>
-
-
-<!-- ADMIN -->
-<section id="adminPage" class="hidden">
-
-  <div class="topbar">
-    <h2>Admin Panel</h2>
-    <button class="logout" onclick="closeAdmin()">Back</button>
-  </div>
-
-  <div class="admin-nav">
-    <button class="active" onclick="adminSection('users',this)">Users</button>
-    <button onclick="adminSection('products',this)">Products</button>
-    <button onclick="adminSection('transactions',this)">Transactions</button>
-  </div>
-
-  <div id="adminContent"></div>
-
-</section>
 
 </div>
 
-<div id="modal" class="modal hidden">
-  <div class="modal-box">
-    <button class="close" onclick="closeModal()">×</button>
-    <div id="modalContent"></div>
-  </div>
+<!-- APP -->
+
+<div id="app" class="hidden">
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-logo">C</div>
+            <span>Camal Data</span>
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </header>
+
+    <main class="container">
+
+        <!-- HOME -->
+
+        <section id="homePage">
+
+            <div class="welcome">
+                <h2 id="welcomeName">Welcome 👋</h2>
+                <p>Manage your data, airtime and wallet.</p>
+            </div>
+
+            <div class="balance-card">
+
+                <div class="balance-label">
+                    Wallet Balance
+                </div>
+
+                <div class="balance">
+                    ₦<span id="balance">0.00</span>
+                </div>
+
+                <div class="wallet-actions">
+
+                    <button
+                        class="wallet-btn"
+                        onclick="fundWallet()"
+                    >
+                        + Fund Wallet
+                    </button>
+
+                    <button
+                        class="wallet-btn"
+                        onclick="openTransactions()"
+                    >
+                        Transactions
+                    </button>
+
+                </div>
+
+            </div>
+
+            <h3 class="section-title">
+                Quick Services
+            </h3>
+
+            <div class="quick-grid">
+
+                <div
+                    class="quick-card"
+                    onclick="openData()"
+                >
+                    <div class="quick-icon">📶</div>
+                    <h3>Buy Data</h3>
+                    <p>MTN, Airtel, Glo & 9mobile</p>
+                </div>
+
+                <div
+                    class="quick-card"
+                    onclick="showComingSoon('Airtime')"
+                >
+                    <div class="quick-icon">📱</div>
+                    <h3>Airtime</h3>
+                    <p>Recharge your line</p>
+                </div>
+
+                <div
+                    class="quick-card"
+                    onclick="openTransactions()"
+                >
+                    <div class="quick-icon">📜</div>
+                    <h3>History</h3>
+                    <p>View your transactions</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- TRANSACTIONS -->
+
+        <section id="transactionsPage" class="hidden">
+
+            <div class="welcome">
+                <h2>Transactions</h2>
+                <p>Your recent activity.</p>
+            </div>
+
+            <div id="transactionsList"></div>
+
+        </section>
+
+        <!-- ADMIN -->
+
+        <section id="adminPage" class="hidden">
+
+            <div class="admin-banner">
+                <h2>👨‍💼 Admin Dashboard</h2>
+                <p>Camal Data control center</p>
+            </div>
+
+            <div class="admin-grid">
+
+                <div class="admin-card">
+                    <div>👥</div>
+                    <div class="big" id="adminUsers">—</div>
+                    <div>Total Users</div>
+                </div>
+
+                <div class="admin-card">
+                    <div>💰</div>
+                    <div class="big" id="adminBalance">—</div>
+                    <div>Wallet</div>
+                </div>
+
+                <div class="admin-card">
+                    <div>📊</div>
+                    <div class="big" id="adminTransactions">—</div>
+                    <div>Transactions</div>
+                </div>
+
+                <div class="admin-card">
+                    <div>📶</div>
+                    <div class="big">VTpass</div>
+                    <div>Data Provider</div>
+                </div>
+
+            </div>
+
+            <h3 class="section-title">
+                Admin Controls
+            </h3>
+
+            <div class="admin-card">
+
+                <button
+                    class="primary-btn"
+                    onclick="showComingSoon('User management')"
+                >
+                    👥 Manage Users
+                </button>
+
+                <button
+                    class="primary-btn"
+                    onclick="showComingSoon('Data plan management')"
+                >
+                    📶 Manage Data Plans
+                </button>
+
+                <button
+                    class="primary-btn"
+                    onclick="openTransactions()"
+                >
+                    📊 View Transactions
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+
+        <button
+            class="nav-btn active"
+            onclick="showPage('homePage',this)"
+        >
+            <span>🏠</span>
+            Home
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="openData()"
+        >
+            <span>📶</span>
+            Data
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="openTransactions()"
+        >
+            <span>📜</span>
+            History
+        </button>
+
+        <button
+            id="adminNav"
+            class="nav-btn hidden"
+            onclick="showPage('adminPage',this)"
+        >
+            <span>👨‍💼</span>
+            Admin
+        </button>
+
+    </nav>
+
 </div>
 
-<div class="footer">
-  © 2026 Camal Data
+<!-- DATA MODAL -->
+
+<div
+    id="dataModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <div class="modal-head">
+            <h2>Buy Data</h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal('dataModal')"
+            >
+                ×
+            </button>
+        </div>
+
+        <div class="network-row">
+
+            <div class="form-group">
+                <label>Network</label>
+
+                <select
+                    id="network"
+                    onchange="loadPlans()"
+                >
+                    <option value="airtel">Airtel</option>
+                    <option value="mtn">MTN</option>
+                    <option value="glo">Glo</option>
+                    <option value="9mobile">9mobile</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+
+                <input
+                    id="dataPhone"
+                    type="tel"
+                    placeholder="08012345678"
+                >
+            </div>
+
+        </div>
+
+        <label style="font-size:14px;font-weight:700;">
+            Select Data Plan
+        </label>
+
+        <div
+            id="plans"
+            class="plans"
+        >
+            <p style="color:#64748b;">
+                Loading plans...
+            </p>
+        </div>
+
+        <button
+            id="buyDataBtn"
+            class="primary-btn"
+            onclick="buyData()"
+            disabled
+        >
+            Buy Data
+        </button>
+
+    </div>
+
 </div>
 
+<!-- TRANSACTION MODAL -->
+
+<div
+    id="transactionModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <div class="modal-head">
+            <h2>Transactions</h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal('transactionModal')"
+            >
+                ×
+            </button>
+        </div>
+
+        <div id="modalTransactions"></div>
+
+    </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
 
 <script>
 
@@ -424,1107 +1044,721 @@ const API = "https://camal-backend.onrender.com";
 
 let token = localStorage.getItem("camal_token");
 let currentUser = null;
-let adminCurrentSection = "users";
+let selectedPlan = null;
+
+/* SPLASH */
+
+setTimeout(() => {
+
+    document.getElementById("splash")
+        .classList.add("hidden");
+
+    if(token){
+        showApp();
+    }else{
+        document.getElementById("auth")
+            .classList.remove("hidden");
+    }
+
+},3000);
 
 
-function apiHeaders(){
-  return {
-    "Content-Type":"application/json",
-    "Authorization":"Bearer " + token
-  };
-}
-
-
-function showMessage(text,error=false){
-  const box=document.getElementById("authMessage");
-
-  box.innerHTML =
-    `<div class="message ${error ? "error":""}">${escapeHtml(text)}</div>`;
-}
-
-
-function escapeHtml(text){
-  return String(text ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
+/* AUTH */
 
 function showLogin(){
 
-  document.getElementById("loginBox").classList.remove("hidden");
-  document.getElementById("registerBox").classList.add("hidden");
+    document.getElementById("loginForm")
+        .classList.remove("hidden");
 
-  document.getElementById("loginTab").classList.add("active");
-  document.getElementById("registerTab").classList.remove("active");
+    document.getElementById("registerForm")
+        .classList.add("hidden");
 
-  document.getElementById("authMessage").innerHTML="";
+    document.getElementById("authSubtitle")
+        .textContent="Login to your account";
 }
 
 
 function showRegister(){
 
-  document.getElementById("loginBox").classList.add("hidden");
-  document.getElementById("registerBox").classList.remove("hidden");
+    document.getElementById("loginForm")
+        .classList.add("hidden");
 
-  document.getElementById("loginTab").classList.remove("active");
-  document.getElementById("registerTab").classList.add("active");
+    document.getElementById("registerForm")
+        .classList.remove("hidden");
 
-  document.getElementById("authMessage").innerHTML="";
+    document.getElementById("authSubtitle")
+        .textContent="Create your Camal Data account";
 }
 
 
-async function register(){
+/* REGISTER */
 
-  const name=document.getElementById("regName").value.trim();
-  const phone=document.getElementById("regPhone").value.trim();
-  const password=document.getElementById("regPassword").value;
+document.getElementById("registerForm")
+.addEventListener("submit",async(e)=>{
 
-  if(!name || !phone || !password){
-    showMessage("Cika dukkan bayanai.",true);
-    return;
-  }
+    e.preventDefault();
 
-  try{
+    const name =
+        document.getElementById("registerName").value.trim();
 
-    const res=await fetch(API+"/api/register",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        name,
-        phone,
-        password
-      })
-    });
+    const phone =
+        document.getElementById("registerPhone").value.trim();
 
-    const data=await res.json();
+    const password =
+        document.getElementById("registerPassword").value;
 
-    if(!res.ok){
-      showMessage(data.message || "Registration failed",true);
-      return;
+    try{
+
+        const res = await fetch(
+            API + "/api/register",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    name,
+                    phone,
+                    password
+                })
+            }
+        );
+
+        const data = await res.json();
+
+        if(!res.ok || data.success === false){
+
+            toast(data.message || "Registration failed");
+            return;
+        }
+
+        toast("Account created successfully");
+
+        showLogin();
+
+        document.getElementById("loginPhone")
+            .value=phone;
+
+    }catch(error){
+
+        toast("Unable to connect to server");
+
     }
 
-    token=data.token;
-    localStorage.setItem("camal_token",token);
-
-    currentUser=data.user;
-
-    openUserPage();
-
-  }catch(e){
-
-    showMessage("An samu matsalar server.",true);
-
-  }
-}
+});
 
 
-async function login(){
+/* LOGIN */
 
-  const phone=document.getElementById("loginPhone").value.trim();
-  const password=document.getElementById("loginPassword").value;
+document.getElementById("loginForm")
+.addEventListener("submit",async(e)=>{
 
-  if(!phone || !password){
-    showMessage("Shigar da phone da password.",true);
-    return;
-  }
+    e.preventDefault();
 
-  try{
+    const phone =
+        document.getElementById("loginPhone").value.trim();
 
-    const res=await fetch(API+"/api/login",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        phone,
-        password
-      })
-    });
+    const password =
+        document.getElementById("loginPassword").value;
 
-    const data=await res.json();
+    try{
 
-    if(!res.ok){
-      showMessage(data.message || "Login failed",true);
-      return;
+        const res = await fetch(
+            API + "/api/login",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    phone,
+                    password
+                })
+            }
+        );
+
+        const data = await res.json();
+
+        if(!res.ok || data.success === false){
+
+            toast(data.message || "Login failed");
+            return;
+        }
+
+        const newToken =
+            data.token ||
+            data.access_token;
+
+        if(newToken){
+
+            token = newToken;
+
+            localStorage.setItem(
+                "camal_token",
+                token
+            );
+
+        }
+
+        currentUser =
+            data.user ||
+            data;
+
+        showApp();
+
+    }catch(error){
+
+        toast("Unable to connect to server");
+
     }
 
-    token=data.token;
-
-    localStorage.setItem("camal_token",token);
-
-    currentUser=data.user;
-
-    openUserPage();
-
-  }catch(e){
-
-    showMessage("Server bai amsa ba.",true);
-
-  }
-}
+});
 
 
-async function loadMe(){
+/* APP */
 
-  if(!token){
-    showAuth();
-    return;
-  }
+function showApp(){
 
-  try{
+    document.getElementById("auth")
+        .classList.add("hidden");
 
-    const res=await fetch(API+"/api/me",{
-      headers:apiHeaders()
-    });
+    document.getElementById("app")
+        .classList.remove("hidden");
 
-    const data=await res.json();
+    updateUserUI();
 
-    if(!res.ok){
-      localStorage.removeItem("camal_token");
-      token=null;
-      showAuth();
-      return;
-    }
+    loadTransactions();
 
-    currentUser=data.user || data;
-
-    openUserPage();
-
-  }catch(e){
-
-    showAuth();
-
-  }
-}
-
-
-function showAuth(){
-
-  document.getElementById("authPage").classList.remove("hidden");
-  document.getElementById("userPage").classList.add("hidden");
-  document.getElementById("adminPage").classList.add("hidden");
+    loadPlans();
 
 }
 
 
-function openUserPage(){
+function updateUserUI(){
 
-  document.getElementById("authPage").classList.add("hidden");
-  document.getElementById("userPage").classList.remove("hidden");
-  document.getElementById("adminPage").classList.add("hidden");
+    if(!currentUser) return;
 
-  document.getElementById("welcomeName").textContent =
-    "Hello, " + (currentUser.name || "User");
+    const name =
+        currentUser.name ||
+        currentUser.user?.name ||
+        "User";
 
-  document.getElementById("userPhone").textContent =
-    currentUser.phone || "";
-
-  if(currentUser.role==="owner" || currentUser.role==="admin"){
-    document.getElementById("adminButton").classList.remove("hidden");
-  }else{
-    document.getElementById("adminButton").classList.add("hidden");
-  }
-
-  loadWallet();
-  loadProducts();
-  loadTransactions();
-}
-
-
-async function loadWallet(){
-
-  try{
-
-    const res=await fetch(API+"/api/wallet",{
-      headers:apiHeaders()
-    });
-
-    const data=await res.json();
-
-    if(res.ok){
-
-      const balanceValue =
-        data.balance ??
-        data.wallet?.balance ??
+    const balance =
+        currentUser.balance ??
+        currentUser.user?.balance ??
         0;
 
-      document.getElementById("balance").textContent =
-        money(balanceValue);
-    }
+    document.getElementById("welcomeName")
+        .textContent =
+        "Welcome, " + name + " 👋";
 
-  }catch(e){}
+    document.getElementById("balance")
+        .textContent =
+        Number(balance).toFixed(2);
 
-}
+    const role =
+        currentUser.role ||
+        currentUser.user?.role;
 
+    if(role === "admin"){
 
-function money(value){
-
-  return "₦" + Number(value || 0).toLocaleString(
-    "en-NG",
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  );
-
-}
-
-
-async function loadProducts(){
-
-  const box=document.getElementById("products");
-
-  box.innerHTML="Loading...";
-
-  try{
-
-    const res=await fetch(API+"/api/products");
-    const data=await res.json();
-
-    const products=data.products || data || [];
-
-    if(!products.length){
-
-      box.innerHTML="<p>No products available yet.</p>";
-      return;
+        document.getElementById("adminNav")
+            .classList.remove("hidden");
 
     }
 
-    box.innerHTML=products.map(p=>`
-
-      <div class="item">
-
-        <b>${escapeHtml(p.name)}</b>
-
-        <br>
-
-        <small>
-          ${escapeHtml(p.network || "")}
-        </small>
-
-        <br>
-
-        <span class="price">
-          ${money(p.price)}
-        </span>
-
-        <button
-          class="btn small"
-          onclick="buyProduct(${p.id})">
-          Buy
-        </button>
-
-      </div>
-
-    `).join("");
-
-  }catch(e){
-
-    box.innerHTML="<p>Unable to load products.</p>";
-
-  }
-
 }
 
 
-async function loadTransactions(){
+/* LOAD PLANS */
 
-  const box=document.getElementById("transactions");
+async function loadPlans(){
 
-  box.innerHTML="Loading...";
+    const network =
+        document.getElementById("network").value;
 
-  try{
+    const plansBox =
+        document.getElementById("plans");
 
-    const res=await fetch(API+"/api/transactions",{
-      headers:apiHeaders()
-    });
+    selectedPlan=null;
 
-    const data=await res.json();
+    document.getElementById("buyDataBtn")
+        .disabled=true;
 
-    const list=data.transactions || data || [];
+    plansBox.innerHTML=
+        "<p style='color:#64748b;'>Loading plans...</p>";
 
-    if(!list.length){
+    try{
 
-      box.innerHTML="<p>No transactions yet.</p>";
-      return;
+        const res = await fetch(
+            API + "/api/data/plans?network=" +
+            encodeURIComponent(network)
+        );
+
+        const data = await res.json();
+
+        if(!res.ok || !data.success){
+
+            plansBox.innerHTML=
+                "<p style='color:#dc2626;'>Unable to load plans.</p>";
+
+            return;
+        }
+
+        const variations =
+            data.plans || [];
+
+        if(!variations.length){
+
+            plansBox.innerHTML=
+                "<p>No data plans available.</p>";
+
+            return;
+        }
+
+        plansBox.innerHTML="";
+
+        variations.forEach(plan=>{
+
+            const box =
+                document.createElement("div");
+
+            box.className="plan";
+
+            const name =
+                plan.name ||
+                plan.variation_name ||
+                "Data Plan";
+
+            const amount =
+                plan.variation_amount ||
+                plan.amount ||
+                0;
+
+            box.innerHTML=`
+                <div class="plan-name">
+                    ${escapeHtml(name)}
+                </div>
+
+                <div class="plan-price">
+                    ₦${Number(amount).toLocaleString()}
+                </div>
+            `;
+
+            box.onclick=()=>{
+
+                document
+                    .querySelectorAll(".plan")
+                    .forEach(x =>
+                        x.classList.remove("selected")
+                    );
+
+                box.classList.add("selected");
+
+                selectedPlan={
+                    name:name,
+                    amount:Number(amount),
+                    variation_code:
+                        plan.variation_code,
+                    serviceID:
+                        data.serviceID
+                };
+
+                document.getElementById("buyDataBtn")
+                    .disabled=false;
+
+            };
+
+            plansBox.appendChild(box);
+
+        });
+
+    }catch(error){
+
+        plansBox.innerHTML=
+            "<p style='color:#dc2626;'>Connection error.</p>";
 
     }
 
-    box.innerHTML=list.slice(0,10).map(t=>`
-
-      <div class="item">
-
-        <b>${escapeHtml(t.type || "")}</b>
-
-        <br>
-
-        <small>
-          ${escapeHtml(t.phone || "")}
-        </small>
-
-        <br>
-
-        <span>${money(t.amount)}</span>
-
-        <br>
-
-        <span class="badge ${
-          t.status==="failed" ? "red" :
-          t.status==="pending" ? "orange" : ""
-        }">
-          ${escapeHtml(t.status || "pending")}
-        </span>
-
-      </div>
-
-    `).join("");
-
-  }catch(e){
-
-    box.innerHTML="<p>Unable to load transactions.</p>";
-
-  }
-
 }
 
 
-function openBuy(type){
-
-  if(type==="data"){
-
-    openModal(`
-
-      <h2>Buy Data</h2>
-
-      <input id="buyPhone" placeholder="Phone number">
-
-      <select id="network">
-        <option value="MTN">MTN</option>
-        <option value="Airtel">Airtel</option>
-        <option value="Glo">Glo</option>
-        <option value="9mobile">9mobile</option>
-      </select>
-
-      <input id="dataAmount" type="number" placeholder="Amount">
-
-      <button class="btn" onclick="buyData()">
-        Buy Data
-      </button>
-
-    `);
-
-  }else{
-
-    openModal(`
-
-      <h2>${type==="airtime" ? "Buy Airtime":"Recharge"}</h2>
-
-      <input id="buyPhone" placeholder="Phone number">
-
-      <input id="buyAmount" type="number" placeholder="Amount">
-
-      <button class="btn"
-        onclick="${
-          type==="airtime" ? "buyAirtime()" : "buyRecharge()"
-        }">
-        Continue
-      </button>
-
-    `);
-
-  }
-
-}
-
+/* BUY DATA */
 
 async function buyData(){
 
-  const phone=document.getElementById("buyPhone").value.trim();
-  const network=document.getElementById("network").value;
-  const amount=Number(document.getElementById("dataAmount").value);
+    if(!selectedPlan){
 
-  if(!phone || !amount){
-    alert("Cika bayanai.");
-    return;
-  }
+        toast("Select a data plan first");
 
-  await purchase("/api/data/buy",{
-    phone,
-    network,
-    amount
-  });
+        return;
+    }
 
-}
+    const phone =
+        document.getElementById("dataPhone")
+            .value.trim();
 
+    if(!phone){
 
-async function buyAirtime(){
+        toast("Enter phone number");
 
-  const phone=document.getElementById("buyPhone").value.trim();
-  const amount=Number(document.getElementById("buyAmount").value);
+        return;
+    }
 
-  await purchase("/api/airtime/buy",{
-    phone,
-    amount
-  });
+    if(!token){
 
-}
+        toast("Please login again");
 
+        return;
+    }
 
-async function buyRecharge(){
+    const button =
+        document.getElementById("buyDataBtn");
 
-  const phone=document.getElementById("buyPhone").value.trim();
-  const amount=Number(document.getElementById("buyAmount").value);
+    button.disabled=true;
+    button.textContent="Processing...";
 
-  await purchase("/api/recharge/buy",{
-    phone,
-    amount
-  });
+    try{
 
-}
+        const res = await fetch(
+            API + "/api/data/buy",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"Bearer " + token
+                },
+                body:JSON.stringify({
 
+                    product:selectedPlan.name,
 
-async function buyProduct(id){
+                    phone:phone,
 
-  const product=window.products?.find(x=>x.id===id);
+                    amount:selectedPlan.amount,
 
-  if(!product){
-    alert("Product bai samu ba.");
-    return;
-  }
+                    serviceID:
+                        selectedPlan.serviceID,
 
-  const phone=prompt("Shigar da phone number:");
+                    variation_code:
+                        selectedPlan.variation_code
 
-  if(!phone) return;
+                })
+            }
+        );
 
-  const type=product.type;
+        const data = await res.json();
 
-  if(type==="data"){
+        if(!res.ok || data.success === false){
 
-    await purchase("/api/data/buy",{
-      phone,
-      amount:Number(product.price),
-      product:product.name,
-      network:product.network
-    });
+            toast(
+                data.message ||
+                "Data purchase failed"
+            );
 
-  }
+            return;
+        }
 
-}
+        if(data.balance !== undefined){
 
+            document.getElementById("balance")
+                .textContent =
+                Number(data.balance).toFixed(2);
 
-async function purchase(url,payload){
+        }
 
-  try{
+        toast(
+            data.message ||
+            "Data purchase submitted"
+        );
 
-    const res=await fetch(API+url,{
-      method:"POST",
-      headers:apiHeaders(),
-      body:JSON.stringify(payload)
-    });
+        closeModal("dataModal");
 
-    const data=await res.json();
+        loadTransactions();
 
-    if(!res.ok){
+    }catch(error){
 
-      alert(data.message || "Purchase failed");
-      return;
+        toast("Unable to connect to server");
+
+    }finally{
+
+        button.disabled=false;
+        button.textContent="Buy Data";
 
     }
 
-    alert(data.message || "Order successful");
-
-    closeModal();
-
-    loadWallet();
-    loadTransactions();
-
-  }catch(e){
-
-    alert("Server bai amsa ba.");
-
-  }
-
 }
 
 
-async function fundWallet(){
+/* TRANSACTIONS */
 
-  const amount=prompt("Nawa zaka saka a wallet?");
+async function loadTransactions(){
 
-  if(!amount) return;
+    if(!token) return;
 
-  try{
+    try{
 
-    const res=await fetch(API+"/api/wallet/fund",{
-      method:"POST",
-      headers:apiHeaders(),
-      body:JSON.stringify({
-        amount:Number(amount)
-      })
-    });
-
-    const data=await res.json();
-
-    alert(data.message || "Wallet updated");
-
-    loadWallet();
-
-  }catch(e){
-
-    alert("Error");
-
-  }
-
-}
-
-
-async function logout(){
-
-  try{
-
-    await fetch(API+"/api/logout",{
-      method:"POST",
-      headers:apiHeaders()
-    });
-
-  }catch(e){}
-
-  localStorage.removeItem("camal_token");
-
-  token=null;
-  currentUser=null;
-
-  showAuth();
-
-}
-
-
-function openModal(content){
-
-  document.getElementById("modalContent").innerHTML=content;
-
-  document.getElementById("modal").classList.remove("hidden");
-
-}
-
-
-function closeModal(){
-
-  document.getElementById("modal").classList.add("hidden");
-
-}
-
-
-function openAdmin(){
-
-  document.getElementById("userPage").classList.add("hidden");
-  document.getElementById("adminPage").classList.remove("hidden");
-
-  adminSection("users");
-
-}
-
-
-function closeAdmin(){
-
-  document.getElementById("adminPage").classList.add("hidden");
-  document.getElementById("userPage").classList.remove("hidden");
-
-}
-
-
-function adminSection(section,button){
-
-  adminCurrentSection=section;
-
-  document.querySelectorAll(".admin-nav button")
-    .forEach(b=>b.classList.remove("active"));
-
-  if(button) button.classList.add("active");
-
-  if(section==="users") loadAdminUsers();
-
-  if(section==="products") loadAdminProducts();
-
-  if(section==="transactions") loadAdminTransactions();
-
-}
-
-
-async function loadAdminUsers(){
-
-  const box=document.getElementById("adminContent");
-
-  box.innerHTML="<div class='card'>Loading users...</div>";
-
-  try{
-
-    const res=await fetch(API+"/api/admin/users",{
-      headers:apiHeaders()
-    });
-
-    const data=await res.json();
-
-    if(!res.ok){
-      box.innerHTML="<div class='card'>Access denied.</div>";
-      return;
-    }
-
-    const users=data.users || data || [];
-
-    box.innerHTML=`
-
-      <div class="card">
-
-        <h3>Users</h3>
-
-        <table>
-
-          <tr>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Role</th>
-          </tr>
-
-          ${users.map(u=>`
-
-            <tr>
-
-              <td>${escapeHtml(u.name)}</td>
-
-              <td>${escapeHtml(u.phone)}</td>
-
-              <td>
-
-                <span class="badge">
-                  ${escapeHtml(u.role)}
-                </span>
-
-                ${
-                  u.role!=="owner"
-                  ?
-                  `<br>
-                  <button
-                    class="btn small"
-                    onclick="changeRole(${u.id},'${
-                      u.role==="admin" ? "user":"admin"
-                    }')">
-                    ${u.role==="admin" ? "Make User":"Make Admin"}
-                  </button>`
-                  :""
+        const res = await fetch(
+            API + "/api/transactions",
+            {
+                headers:{
+                    "Authorization":
+                        "Bearer " + token
                 }
+            }
+        );
 
-              </td>
+        const data = await res.json();
 
-            </tr>
+        const list =
+            data.transactions ||
+            data.data ||
+            [];
 
-          `).join("")}
+        renderTransactions(
+            list,
+            document.getElementById("transactionsList")
+        );
 
-        </table>
+        renderTransactions(
+            list,
+            document.getElementById("modalTransactions")
+        );
 
-      </div>
+        if(list.length){
 
-    `;
+            document.getElementById("adminTransactions")
+                .textContent=list.length;
 
-  }catch(e){
-
-    box.innerHTML="<div class='card'>Error loading users.</div>";
-
-  }
-
-}
-
-
-async function changeRole(id,role){
-
-  if(!confirm("Change user role?")) return;
-
-  try{
-
-    const res=await fetch(
-      API+"/api/admin/users/"+id+"/role",
-      {
-        method:"PUT",
-        headers:apiHeaders(),
-        body:JSON.stringify({role})
-      }
-    );
-
-    const data=await res.json();
-
-    alert(data.message || "Role updated");
-
-    loadAdminUsers();
-
-  }catch(e){
-
-    alert("Error");
-
-  }
-
-}
-
-
-async function loadAdminProducts(){
-
-  const box=document.getElementById("adminContent");
-
-  box.innerHTML=`
-
-    <div class="card">
-
-      <h3>Add Product</h3>
-
-      <input id="pName" placeholder="Product name">
-
-      <select id="pType">
-        <option value="data">Data</option>
-        <option value="airtime">Airtime</option>
-        <option value="recharge">Recharge</option>
-      </select>
-
-      <input id="pNetwork" placeholder="Network">
-
-      <input id="pPrice" type="number" placeholder="Price">
-
-      <button class="btn" onclick="addProduct()">
-        Add Product
-      </button>
-
-    </div>
-
-    <div id="adminProductList"></div>
-  `;
-
-  try{
-
-    const res=await fetch(API+"/api/admin/products",{
-      headers:apiHeaders()
-    });
-
-    const data=await res.json();
-
-    const products=data.products || data || [];
-
-    window.products=products;
-
-    document.getElementById("adminProductList").innerHTML=`
-
-      <div class="card">
-
-        <h3>Products</h3>
-
-        ${
-          products.length
-          ?
-          products.map(p=>`
-
-            <div class="item">
-
-              <b>${escapeHtml(p.name)}</b>
-
-              <br>
-
-              ${escapeHtml(p.network || "")}
-
-              <br>
-
-              <span class="price">
-                ${money(p.price)}
-              </span>
-
-              <br>
-
-              <button
-                class="btn small"
-                onclick="editProduct(${p.id})">
-                Edit
-              </button>
-
-              <button
-                class="btn danger small"
-                onclick="deleteProduct(${p.id})">
-                Delete
-              </button>
-
-            </div>
-
-          `).join("")
-          :
-          "<p>No products.</p>"
         }
 
-      </div>
+    }catch(error){
 
-    `;
+        console.log(error);
 
-  }catch(e){
-
-    document.getElementById("adminProductList").innerHTML=
-      "<div class='card'>Error.</div>";
-
-  }
+    }
 
 }
 
 
-async function addProduct(){
+function renderTransactions(list,container){
 
-  const name=document.getElementById("pName").value.trim();
-  const type=document.getElementById("pType").value;
-  const network=document.getElementById("pNetwork").value.trim();
-  const price=Number(document.getElementById("pPrice").value);
+    if(!container) return;
 
-  if(!name || !price){
-    alert("Cika product name da price.");
-    return;
-  }
+    if(!list.length){
 
-  try{
+        container.innerHTML=
+            "<p style='color:#64748b;'>No transactions yet.</p>";
 
-    const res=await fetch(API+"/api/admin/products",{
-      method:"POST",
-      headers:apiHeaders(),
-      body:JSON.stringify({
-        name,
-        type,
-        network,
-        price,
-        active:1
-      })
-    });
+        return;
+    }
 
-    const data=await res.json();
+    container.innerHTML="";
 
-    alert(data.message || "Product added");
+    list.slice(0,30).forEach(tx=>{
 
-    loadAdminProducts();
+        const item =
+            document.createElement("div");
 
-  }catch(e){
+        item.className="transaction";
 
-    alert("Error");
+        const status =
+            String(tx.status || "pending")
+            .toLowerCase();
 
-  }
+        item.innerHTML=`
 
-}
+            <div>
+                <div class="transaction-title">
+                    ${escapeHtml(
+                        tx.product ||
+                        tx.type ||
+                        "Transaction"
+                    )}
+                </div>
 
+                <div class="transaction-small">
+                    ${escapeHtml(tx.phone || "")}
+                </div>
 
-async function editProduct(id){
-
-  const p=window.products.find(x=>x.id===id);
-
-  if(!p) return;
-
-  const name=prompt("Product name:",p.name);
-
-  if(name===null) return;
-
-  const price=prompt("Price:",p.price);
-
-  if(price===null) return;
-
-  const network=prompt("Network:",p.network || "");
-
-  if(network===null) return;
-
-  try{
-
-    const res=await fetch(
-      API+"/api/admin/products/"+id,
-      {
-        method:"PUT",
-        headers:apiHeaders(),
-        body:JSON.stringify({
-          name,
-          price:Number(price),
-          network
-        })
-      }
-    );
-
-    const data=await res.json();
-
-    alert(data.message || "Updated");
-
-    loadAdminProducts();
-
-  }catch(e){
-
-    alert("Error");
-
-  }
-
-}
-
-
-async function deleteProduct(id){
-
-  if(!confirm("Delete this product?")) return;
-
-  try{
-
-    const res=await fetch(
-      API+"/api/admin/products/"+id,
-      {
-        method:"DELETE",
-        headers:apiHeaders()
-      }
-    );
-
-    const data=await res.json();
-
-    alert(data.message || "Deleted");
-
-    loadAdminProducts();
-
-  }catch(e){
-
-    alert("Error");
-
-  }
-
-}
-
-
-async function loadAdminTransactions(){
-
-  const box=document.getElementById("adminContent");
-
-  box.innerHTML="<div class='card'>Loading transactions...</div>";
-
-  try{
-
-    const res=await fetch(API+"/api/admin/transactions",{
-      headers:apiHeaders()
-    });
-
-    const data=await res.json();
-
-    const transactions=data.transactions || data || [];
-
-    box.innerHTML=`
-
-      <div class="card">
-
-        <h3>All Transactions</h3>
-
-        ${
-          transactions.length
-          ?
-          transactions.map(t=>`
-
-            <div class="item">
-
-              <b>${escapeHtml(t.type || "")}</b>
-
-              <br>
-
-              User ID:
-              ${escapeHtml(t.user_id)}
-
-              <br>
-
-              Phone:
-              ${escapeHtml(t.phone || "")}
-
-              <br>
-
-              Amount:
-              <b>${money(t.amount)}</b>
-
-              <br>
-
-              Status:
-              <span class="badge ${
-                t.status==="failed"
-                ? "red"
-                : t.status==="pending"
-                ? "orange"
-                : ""
-              }">
-                ${escapeHtml(t.status)}
-              </span>
-
-              <br>
-
-              ${
-                t.status==="pending"
-                ?
-                `
-                <button
-                  class="btn small"
-                  onclick="updateTransaction(${t.id},'success')">
-                  Approve
-                </button>
-
-                <button
-                  class="btn danger small"
-                  onclick="updateTransaction(${t.id},'failed')">
-                  Fail
-                </button>
-                `
-                :""
-              }
-
+                <div class="transaction-small">
+                    ${escapeHtml(
+                        tx.created_at || ""
+                    )}
+                </div>
             </div>
 
-          `).join("")
-          :
-          "<p>No transactions.</p>"
-        }
+            <div style="text-align:right">
 
-      </div>
+                <div style="font-weight:900;">
+                    ₦${Number(
+                        tx.amount || 0
+                    ).toLocaleString()}
+                </div>
 
-    `;
+                <div class="status ${status}">
+                    ${escapeHtml(status)}
+                </div>
 
-  }catch(e){
+            </div>
+        `;
 
-    box.innerHTML="<div class='card'>Error loading transactions.</div>";
+        container.appendChild(item);
 
-  }
+    });
 
 }
 
 
-async function updateTransaction(id,status){
+/* PAGES */
 
-  try{
+function showPage(id,button){
 
-    const res=await fetch(
-      API+"/api/admin/transactions/"+id+"/status",
-      {
-        method:"PUT",
-        headers:apiHeaders(),
-        body:JSON.stringify({status})
-      }
-    );
+    document
+        .querySelectorAll("main section")
+        .forEach(section =>
+            section.classList.add("hidden")
+        );
 
-    const data=await res.json();
+    document
+        .getElementById(id)
+        .classList.remove("hidden");
 
-    alert(data.message || "Updated");
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-    loadAdminTransactions();
-    loadWallet();
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+}
+
+
+/* DATA */
+
+function openData(){
+
+    document
+        .getElementById("dataModal")
+        .classList.remove("hidden");
+
+    loadPlans();
+
+}
+
+
+/* TRANSACTIONS */
+
+function openTransactions(){
+
     loadTransactions();
 
-  }catch(e){
-
-    alert("Error");
-
-  }
+    document
+        .getElementById("transactionModal")
+        .classList.remove("hidden");
 
 }
 
 
-document.addEventListener("DOMContentLoaded",()=>{
+/* WALLET */
 
-  loadMe();
+function fundWallet(){
 
-});
+    const amount =
+        prompt("Enter amount to fund wallet:");
+
+    if(!amount) return;
+
+    const value =
+        Number(amount);
+
+    if(!value || value <= 0){
+
+        toast("Invalid amount");
+
+        return;
+    }
+
+    toast(
+        "Wallet funding endpoint will be connected here."
+    );
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem("camal_token");
+
+    token=null;
+    currentUser=null;
+
+    location.reload();
+
+}
+
+
+/* MODAL */
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.add("hidden");
+
+}
+
+
+/* TOAST */
+
+function toast(message){
+
+    const box =
+        document.getElementById("toast");
+
+    box.textContent=message;
+
+    box.style.display="block";
+
+    setTimeout(()=>{
+
+        box.style.display="none";
+
+    },3000);
+
+}
+
+
+/* COMING SOON */
+
+function showComingSoon(name){
+
+    toast(name + " control is being connected.");
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
 
 </script>
 
 </body>
-      </html>
+</html>
+    
